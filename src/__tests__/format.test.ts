@@ -5,7 +5,7 @@ import { slugify } from "@/lib/slug";
 describe("formato de fechas en hora de Guadalajara", () => {
   const iso = "2026-09-12T02:00:00.000Z"; // 11 sep 20:00 en MX (UTC-6)
   it("muestra la fecha local", () => {
-    expect(formatEventDate(iso)).toMatch(/viernes, 11 de septiembre/);
+    expect(formatEventDate(iso)).toMatch(/^Viernes, 11 de septiembre/);
     expect(formatEventTime(iso)).toMatch(/8:00/);
   });
   it("genera el chip de fecha", () => {

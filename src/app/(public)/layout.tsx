@@ -6,7 +6,7 @@ export default function PublicLayout({ children }: LayoutProps<"/">) {
   return (
     <>
       <SiteHeader />
-      <main className="flex-1">
+      <main id="contenido" className="flex-1">
         <PageTransition>{children}</PageTransition>
       </main>
       <SiteFooter />

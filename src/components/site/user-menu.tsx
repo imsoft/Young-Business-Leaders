@@ -23,7 +23,7 @@ async function UserMenuInner() {
   if (!profile) {
     return (
       <div className="flex items-center gap-2">
-        <Link href="/login" className={cn(buttonVariants({ variant: "ghost" }))}>
+        <Link href="/login" className={cn(buttonVariants({ variant: "ghost" }), "hidden sm:inline-flex")}>
           Iniciar sesión
         </Link>
         <Link href="/registro" className={cn(buttonVariants({ variant: "default" }), "font-semibold")}>

@@ -14,8 +14,8 @@ async function Year() {
 export function SiteFooter() {
   return (
     <footer className="mt-auto border-t bg-ink text-white">
-      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-[1.5fr_1fr_1fr]">
-        <div className="space-y-4">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 sm:grid-cols-2 md:grid-cols-[1.5fr_1fr_1fr]">
+        <div className="space-y-4 sm:col-span-2 md:col-span-1">
           <Logo dark />
           <p className="max-w-sm text-sm text-white/70">{SITE_TAGLINE} 🚀 Una comunidad de jóvenes emprendedores en Jalisco.</p>
           <div className="flex gap-2">

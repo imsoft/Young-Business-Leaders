@@ -96,7 +96,7 @@ function Info({ icon: Icon, label, value, sub }: { icon: typeof CalendarDays; la
       </span>
       <div>
         <dt className="text-xs font-semibold tracking-wider text-muted-foreground uppercase">{label}</dt>
-        <dd className="font-medium capitalize">{value}</dd>
+        <dd className="font-medium">{value}</dd>
         {sub ? <dd className="text-sm text-muted-foreground">{sub}</dd> : null}
       </div>
     </div>

@@ -50,7 +50,7 @@ async function Body({ searchParams }: { searchParams: PageProps<"/admin/miembros
           </Link>
         ))}
       </div>
-      <div className="overflow-hidden rounded-2xl border bg-card">
+      <div className="overflow-x-auto rounded-2xl border bg-card">
         <Table>
           <TableHeader>
             <TableRow>

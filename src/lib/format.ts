@@ -1,13 +1,19 @@
 const TZ = "America/Mexico_City";
 const LOCALE = "es-MX";
 
+function capitalize(s: string) {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
 export function formatEventDate(iso: string) {
-  return new Intl.DateTimeFormat(LOCALE, {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    timeZone: TZ,
-  }).format(new Date(iso));
+  return capitalize(
+    new Intl.DateTimeFormat(LOCALE, {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      timeZone: TZ,
+    }).format(new Date(iso)),
+  );
 }
 
 export function formatEventTime(iso: string) {

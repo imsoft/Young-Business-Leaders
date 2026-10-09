@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CalendarDays, MapPin } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { BrandPlaceholder } from "./brand-placeholder";
 import { dateChip, formatEventTime } from "@/lib/format";
 import type { Event } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -16,7 +17,7 @@ export function EventCard({ event, className }: { event: Event; className?: stri
         className,
       )}
     >
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-gold-gradient">
+      <div className="relative aspect-[16/10] w-full overflow-hidden sm:aspect-[4/3]">
         {event.cover_url ? (
           <Image
             src={event.cover_url}
@@ -26,9 +27,7 @@ export function EventCard({ event, className }: { event: Event; className?: stri
             className="object-cover transition duration-500 group-hover:scale-105"
           />
         ) : (
-          <div className="absolute inset-0 flex items-end p-5">
-            <span className="font-heading text-2xl font-extrabold leading-tight text-ink/90">{event.title}</span>
-          </div>
+          <BrandPlaceholder className="transition duration-500 group-hover:scale-105" />
         )}
         <div className="absolute top-3 left-3 flex flex-col items-center rounded-xl bg-white px-3 py-1.5 text-ink shadow">
           <span className="font-heading text-xl leading-none font-extrabold">{chip.day}</span>

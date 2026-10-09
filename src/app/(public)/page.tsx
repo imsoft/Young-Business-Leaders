@@ -10,6 +10,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
 import { FloatingMark, HeroGlow, HeroIntro, HeroLine } from "@/components/motion/hero";
+import { BrandPlaceholder } from "@/components/site/brand-placeholder";
 
 const PILLARS = [
   {
@@ -190,13 +191,15 @@ async function AlbumsPreview() {
           Ver galería <ArrowRight />
         </Link>
       </div>
-    <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+    <Stagger className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
       {albums.map((a) => (
         <StaggerItem key={a.id}>
-        <Link href={`/galeria/${a.slug}`} className="group relative block aspect-square overflow-hidden rounded-2xl bg-gold-gradient">
+        <Link href={`/galeria/${a.slug}`} className="group relative block aspect-square overflow-hidden rounded-2xl">
           {a.cover_url ? (
-            <Image src={a.cover_url} alt="" fill sizes="25vw" className="object-cover transition duration-500 group-hover:scale-105" />
-          ) : null}
+            <Image src={a.cover_url} alt="" fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover transition duration-500 group-hover:scale-105" />
+          ) : (
+            <BrandPlaceholder className="transition duration-500 group-hover:scale-105" />
+          )}
           <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent p-4">
             <span className="font-heading font-bold text-white">{a.title}</span>
           </div>

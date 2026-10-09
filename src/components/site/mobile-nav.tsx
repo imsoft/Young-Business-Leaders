@@ -24,7 +24,7 @@ export function MobileNav({ links }: { links: { href: string; label: string }[] 
         </SheetHeader>
         <nav className="flex flex-col gap-1 px-4">
           {links.map((l) => (
-            <SheetClose key={l.href} render={<Link href={l.href} />} className="rounded-lg px-3 py-2.5 text-base font-medium hover:bg-muted">
+            <SheetClose key={l.href} nativeButton={false} render={<Link href={l.href} />} className="rounded-lg px-3 py-2.5 text-base font-medium hover:bg-muted">
               {l.label}
             </SheetClose>
           ))}

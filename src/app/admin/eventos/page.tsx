@@ -34,7 +34,7 @@ async function Body() {
   const events = data ?? [];
   const counts = await Promise.all(events.map((e) => admin.rpc("event_attendee_count", { event: e.id }).then((r) => r.data ?? 0)));
   return (
-    <div className="overflow-hidden rounded-2xl border bg-card">
+    <div className="overflow-x-auto rounded-2xl border bg-card">
       <Table>
         <TableHeader>
           <TableRow>

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Suspense } from "react";
-import { CalendarDays, Handshake, Images, LayoutDashboard, Users } from "lucide-react";
+import { CalendarDays, Handshake, Images, Inbox, LayoutDashboard, Users } from "lucide-react";
 import { requireAdmin } from "@/lib/auth";
 import { Logo } from "@/components/site/logo";
 import { UserMenu } from "@/components/site/user-menu";
@@ -12,6 +12,7 @@ const NAV = [
   { href: "/admin/eventos", label: "Eventos", icon: CalendarDays },
   { href: "/admin/galeria", label: "Galería", icon: Images },
   { href: "/admin/patrocinadores", label: "Patrocinadores", icon: Handshake },
+  { href: "/admin/mensajes", label: "Mensajes", icon: Inbox },
 ];
 
 export default function AdminLayout({ children }: LayoutProps<"/admin">) {

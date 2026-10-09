@@ -10,7 +10,7 @@ export default function CommunityLayout({ children }: LayoutProps<"/comunidad">)
   return (
     <>
       <SiteHeader />
-      <main className="flex-1">
+      <main id="contenido" className="flex-1">
         <div className="border-b bg-cream">
           <nav className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 py-2 text-sm" aria-label="Comunidad">
             {[
