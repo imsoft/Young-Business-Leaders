@@ -16,7 +16,7 @@ export function AlbumForm({ album }: { album?: GalleryAlbum }) {
   const [touched, setTouched] = useState(Boolean(album));
   const e = state?.errors ?? {};
   return (
-    <form action={action} className="grid gap-5" encType="multipart/form-data">
+    <form action={action} className="grid gap-5">
       {album ? <input type="hidden" name="id" value={album.id} /> : null}
       <Field label="Título" htmlFor="title" error={e.title}>
         <Input id="title" name="title" defaultValue={album?.title} required onChange={(ev) => { if (!touched) setSlug(slugify(ev.currentTarget.value)); }} />

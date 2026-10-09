@@ -18,7 +18,7 @@ export function EventForm({ event }: { event?: Event }) {
   const [slugTouched, setSlugTouched] = useState(Boolean(event));
   const e = state?.errors ?? {};
   return (
-    <form action={action} className="grid gap-5" encType="multipart/form-data">
+    <form action={action} className="grid gap-5">
       {event ? <input type="hidden" name="id" value={event.id} /> : null}
       <Field label="Título" htmlFor="title" error={e.title}>
         <Input id="title" name="title" defaultValue={event?.title} required onChange={(ev) => { if (!slugTouched) setSlug(slugify(ev.currentTarget.value)); }} />

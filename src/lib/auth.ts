@@ -1,5 +1,6 @@
 import "server-only";
 import { redirect } from "next/navigation";
+import { connection } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { hasSupabaseEnv } from "@/lib/supabase/env";
 import type { Profile } from "@/lib/types";
@@ -10,6 +11,8 @@ import type { Profile } from "@/lib/types";
  */
 export async function getCurrentProfile(): Promise<Profile | null> {
   if (!hasSupabaseEnv()) return null;
+  // El SDK de Supabase usa Date.now() al construirse; marcamos la lectura como request-time antes.
+  await connection();
   const supabase = await createClient();
   const {
     data: { user },

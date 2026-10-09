@@ -15,7 +15,7 @@ export function ProfileForm({ profile }: { profile: Profile }) {
   const [state, action] = useActionState<ProfileState, FormData>(updateProfile, undefined);
   const e = state?.errors ?? {};
   return (
-    <form action={action} className="grid gap-5" encType="multipart/form-data">
+    <form action={action} className="grid gap-5">
       <div className="flex items-center gap-4">
         <Avatar className="size-20">
           <AvatarImage src={profile.avatar_url ?? undefined} alt="" />

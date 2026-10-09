@@ -13,7 +13,7 @@ export function SponsorForm({ sponsor }: { sponsor?: Sponsor }) {
   const [state, action] = useActionState<AdminState, FormData>(saveSponsor, undefined);
   const e = state?.errors ?? {};
   return (
-    <form action={action} className="grid gap-4" encType="multipart/form-data">
+    <form action={action} className="grid gap-4">
       {sponsor ? <input type="hidden" name="id" value={sponsor.id} /> : null}
       <Field label="Nombre" htmlFor={`name-${sponsor?.id ?? "new"}`} error={e.name}>
         <Input id={`name-${sponsor?.id ?? "new"}`} name="name" defaultValue={sponsor?.name} required />

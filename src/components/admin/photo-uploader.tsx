@@ -10,7 +10,7 @@ export function PhotoUploader({ albumId }: { albumId: string }) {
   const bound = addPhotos.bind(null, albumId);
   const [state, action] = useActionState<AdminState, FormData>(bound, undefined);
   return (
-    <form action={action} className="grid gap-3" encType="multipart/form-data">
+    <form action={action} className="grid gap-3">
       <Field label="Agregar fotos" htmlFor="photos" error={state?.errors?.photos} hint="Puedes seleccionar varias. Máximo 6 MB cada una y ~8 MB por envío.">
         <Input id="photos" name="photos" type="file" accept="image/*" multiple required />
       </Field>

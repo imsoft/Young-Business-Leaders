@@ -7,6 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -40,10 +41,12 @@ async function UserMenuInner() {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuLabel>
-          <div className="truncate font-medium">{profile.full_name || "Miembro"}</div>
-          <div className="truncate text-xs text-muted-foreground">{profile.email}</div>
-        </DropdownMenuLabel>
+        <DropdownMenuGroup>
+          <DropdownMenuLabel>
+            <div className="truncate font-medium">{profile.full_name || "Miembro"}</div>
+            <div className="truncate text-xs text-muted-foreground">{profile.email}</div>
+          </DropdownMenuLabel>
+        </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem render={<Link href="/comunidad" />}>Comunidad</DropdownMenuItem>
         <DropdownMenuItem render={<Link href="/comunidad/eventos" />}>Mis eventos</DropdownMenuItem>
@@ -53,7 +56,7 @@ async function UserMenuInner() {
         ) : null}
         <DropdownMenuSeparator />
         <form action={signOut}>
-          <DropdownMenuItem render={<button type="submit" className="w-full" />}>
+          <DropdownMenuItem nativeButton render={<button type="submit" className="w-full" />}>
             Cerrar sesión
           </DropdownMenuItem>
         </form>
