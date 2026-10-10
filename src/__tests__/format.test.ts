@@ -33,3 +33,17 @@ describe("slugify", () => {
     expect(slugify("  Conf #2: La receta del triunfo ")).toBe("conf-2-la-receta-del-triunfo");
   });
 });
+
+import { isPastEvent } from "@/lib/format";
+
+describe("isPastEvent", () => {
+  const now = Date.parse("2026-10-09T18:00:00-06:00");
+  it("usa la hora de fin cuando existe", () => {
+    expect(isPastEvent({ starts_at: "2026-10-09T10:00:00-06:00", ends_at: "2026-10-09T13:00:00-06:00" }, now)).toBe(true);
+    expect(isPastEvent({ starts_at: "2026-10-09T10:00:00-06:00", ends_at: "2026-10-09T20:00:00-06:00" }, now)).toBe(false);
+  });
+  it("sin hora de fin da 6 horas de margen", () => {
+    expect(isPastEvent({ starts_at: "2026-10-09T13:00:00-06:00", ends_at: null }, now)).toBe(false);
+    expect(isPastEvent({ starts_at: "2026-10-09T11:00:00-06:00", ends_at: null }, now)).toBe(true);
+  });
+});

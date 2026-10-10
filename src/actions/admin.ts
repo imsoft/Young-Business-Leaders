@@ -15,6 +15,7 @@ import {
   type FieldErrors,
 } from "@/lib/validation";
 import type { MemberStatus } from "@/lib/types";
+import { processUpload, uploadName, UNSUPPORTED_IMAGE } from "@/lib/images";
 
 export type AdminState = { errors?: FieldErrors; message?: string; ok?: boolean } | undefined;
 
@@ -24,10 +25,13 @@ async function uploadImage(folder: string, file: FormDataEntryValue | null) {
   if (!(file instanceof File) || file.size === 0) return { url: undefined as string | undefined };
   if (!file.type.startsWith("image/")) return { error: "Sube una imagen" };
   if (file.size > MAX_IMAGE_BYTES) return { error: "Máximo 6 MB por imagen" };
-  const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
-  const path = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+  const img = await processUpload(file);
+  if (!img) return { error: UNSUPPORTED_IMAGE };
+  const path = `${folder}/${uploadName(img)}`;
   const admin = createAdminClient();
-  const { error } = await admin.storage.from("media").upload(path, file, { contentType: file.type });
+  const { error } = await admin.storage
+    .from("media")
+    .upload(path, img.data, { contentType: img.contentType, cacheControl: "31536000" });
   if (error) return { error: "No se pudo subir la imagen" };
   return { url: admin.storage.from("media").getPublicUrl(path).data.publicUrl };
 }

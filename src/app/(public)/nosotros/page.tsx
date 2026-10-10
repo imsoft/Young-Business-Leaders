@@ -5,6 +5,8 @@ import { Section, SectionHeading } from "@/components/site/section";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
+import Image from "next/image";
+import { siteMedia, type MediaImage } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: "Nosotros",
@@ -30,6 +32,7 @@ export default function NosotrosPage() {
           />
         </Section>
       </div>
+      <Collage />
       <Section>
         <div className="grid gap-10 md:grid-cols-2">
           <Reveal className="space-y-4 text-muted-foreground">
@@ -65,5 +68,27 @@ export default function NosotrosPage() {
         </Reveal>
       </Section>
     </>
+  );
+}
+
+function Photo({ image, alt, className, sizes }: { image: MediaImage | undefined; alt: string; className?: string; sizes: string }) {
+  if (!image) return null;
+  return (
+    <div className={cn("relative overflow-hidden rounded-3xl bg-muted shadow-sm", className)}>
+      <Image src={image.src} alt={alt} fill sizes={sizes} placeholder="blur" blurDataURL={image.blur} className="object-cover" />
+    </div>
+  );
+}
+
+function Collage() {
+  if (!siteMedia["nosotros-1"]) return null;
+  return (
+    <div className="mx-auto -mt-8 max-w-6xl px-4 md:-mt-10">
+      <Reveal className="grid grid-cols-2 gap-3 md:grid-cols-[1.5fr_0.8fr_1.2fr] md:gap-4">
+        <Photo image={siteMedia["nosotros-1"]} alt="Toma de protesta de Young Business Leaders" sizes="(min-width:768px) 45vw, 100vw" className="col-span-2 aspect-[16/10] md:col-span-1 md:aspect-auto md:h-[22rem]" />
+        <Photo image={siteMedia["nosotros-2"]} alt="Reconocimiento con el logotipo de Young Business Leaders" sizes="(min-width:768px) 22vw, 50vw" className="aspect-[4/5] md:aspect-auto md:h-[22rem]" />
+        <Photo image={siteMedia["nosotros-3"]} alt="Asistentes y ponentes al cierre de una conferencia" sizes="(min-width:768px) 33vw, 50vw" className="aspect-[4/5] md:aspect-auto md:h-[22rem]" />
+      </Reveal>
+    </div>
   );
 }

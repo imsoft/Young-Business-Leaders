@@ -3,6 +3,7 @@ import { Section, SectionHeading } from "@/components/site/section";
 import { EventCard } from "@/components/site/event-card";
 import { getPastEvents, getUpcomingEvents } from "@/lib/data/public";
 import { Stagger, StaggerItem } from "@/components/motion/reveal";
+import { TrajectoryArchive, TrajectoryStats } from "@/components/site/trajectory";
 
 export const metadata: Metadata = {
   title: "Eventos",
@@ -43,6 +44,17 @@ export default async function EventosPage() {
           </Stagger>
         </Section>
       ) : null}
+      <Section id="trayectoria" className="scroll-mt-20">
+        <SectionHeading
+          eyebrow="Trayectoria"
+          title="Todo lo que hemos hecho"
+          description="Conferencias, talleres, networking y visitas a empresas desde que empezó la comunidad. Toca cualquier cartel para verlo en grande."
+        />
+        <div className="mb-14">
+          <TrajectoryStats />
+        </div>
+        <TrajectoryArchive />
+      </Section>
     </>
   );
 }

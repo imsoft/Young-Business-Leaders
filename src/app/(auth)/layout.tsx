@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Logo } from "@/components/site/logo";
 import { HeroGlow, HeroIntro, HeroLine } from "@/components/motion/hero";
 import { PageTransition } from "@/components/motion/page-transition";
+import { Duotone } from "@/components/media/duotone";
+import { siteMedia } from "@/lib/media";
 
 export default function AuthLayout({ children }: LayoutProps<"/">) {
   return (
@@ -16,6 +18,8 @@ export default function AuthLayout({ children }: LayoutProps<"/">) {
         </p>
       </div>
       <div className="relative hidden overflow-hidden bg-gold-gradient lg:block">
+        <Duotone image={siteMedia.auth} className="opacity-40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-gold via-gold/40 to-transparent" />
         <HeroGlow />
         <div className="absolute inset-0 opacity-[0.12] [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:22px_22px]" />
         <HeroIntro className="relative flex h-full flex-col justify-end p-12 text-ink">

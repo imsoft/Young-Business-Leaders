@@ -44,6 +44,12 @@ export function dateChip(iso: string) {
   return { day, month };
 }
 
+/** Un evento ya pasó cuando terminó (o, sin hora de fin, 6 h después de empezar). */
+export function isPastEvent(event: { starts_at: string; ends_at: string | null }, now: number) {
+  const end = event.ends_at ? Date.parse(event.ends_at) : Date.parse(event.starts_at) + 6 * 60 * 60 * 1000;
+  return end < now;
+}
+
 export function initials(name: string) {
   return name
     .trim()

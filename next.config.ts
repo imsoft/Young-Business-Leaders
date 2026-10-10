@@ -11,6 +11,8 @@ const nextConfig: NextConfig = {
   partialPrefetching: true,
   reactCompiler: true,
   images: {
+    // Las fotos llevan hash en el nombre: se pueden cachear un mes sin riesgo.
+    minimumCacheTTL: 2678400,
     remotePatterns: [
       { protocol: "https", hostname: "**.supabase.co" },
       { protocol: "https", hostname: "**.supabase.in" },

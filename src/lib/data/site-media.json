@@ -1,0 +1,348 @@
+{
+ "site": {
+  "hero": {
+   "src": "/media/site/hero.webp",
+   "width": 2000,
+   "height": 1500,
+   "blur": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAwAgCdASoQAAwAA4BaJZQCdAEWBwVNzuloAAD+fnKXImxu6l1MJThg6VTclace4KTvrtjVz2EH0r4iwVUhvT4DiOmA5G1OT4IxmcXOh31sV1/RXwMRtI5jLFtAAA=="
+  },
+  "auth": {
+   "src": "/media/site/auth.webp",
+   "width": 1600,
+   "height": 1200,
+   "blur": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAAAwAgCdASoQAAwAA4BaJbACdAYs3WKSUFfiQAD+mULsn0RDHcBQAcNz5ftxUsE3N4SYRxlz/MDPvYiZQAg7Uz/6Zar45HoUW4o5rOZjzgz6Jfd8/vc//7bz4812fW7jjTsA07GRH5n9wfzauUjJJYhcni496AAA"
+  },
+  "nosotros-1": {
+   "src": "/media/site/nosotros-1.webp",
+   "width": 1400,
+   "height": 1050,
+   "blur": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAABQAgCdASoQAAwAA4BaJYgCdAYvr28OkxsUhyAA/rg2nqfZsETsUIHIw4EgDiolu3C1OUyoJoLTBp9v1t3Xv/IBrQffXPXiPXjjOv1R67VlmsxTp1k5ob2oj3VY1ShtCDuQ3al7vFbO7KsCAAA="
+  },
+  "nosotros-2": {
+   "src": "/media/site/nosotros-2.webp",
+   "width": 900,
+   "height": 1200,
+   "blur": "data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAAAQBACdASoQABUAPu1iqk2ppaQiMAgBMB2JYgC7AYv04ETDSOX70zCPAAD+Wr2gPkp0mpEG16UZ9hAkDz/sepHe7utXtSmxy8ri0hbhgqa3Dm/Taeah6iIfmiRs+1iFiv8uz1rZcWLnxyv/DIYSRLdtvtCkT/5ehDrxpFhG6veRORdSgAA="
+  },
+  "nosotros-3": {
+   "src": "/media/site/nosotros-3.webp",
+   "width": 1280,
+   "height": 720,
+   "blur": "data:image/webp;base64,UklGRloAAABXRUJQVlA4IE4AAADQAQCdASoQAAkAA4BaJZgCsAENycz2IAD+yUNQLYww71zjZFYzIYVUir4jar7Ly6xC2wG29LM+uiGCj1loeWudAnaJjABjWTKGjarEgAA="
+  },
+  "marquee-01": {
+   "src": "/media/site/marquee-01.webp",
+   "width": 1100,
+   "height": 733,
+   "blur": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAAAwAgCdASoQAAsAA4BaJZQCdAYuHUa18hZOEAD9tWCVJiA2j7qW34DpZ4i149/kJJ4lV0CnUOT7ITbT2u9ZCxT+AEyDwMWNrrdu0YnLG/9M6dXgelHrMMGh5tQAAA=="
+  },
+  "marquee-02": {
+   "src": "/media/site/marquee-02.webp",
+   "width": 1100,
+   "height": 825,
+   "blur": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADQAQCdASoQAAwAA4BaJbACsADsVd88wAD+fK8W95OjqlknEdA59b0as5dbT67JJQ/QycxakdF6pHfESx7DecFLSBcTE08hQENxzXffhyYWg9l01OmaQA4rr8l29BSH1xAAAA=="
+  },
+  "marquee-03": {
+   "src": "/media/site/marquee-03.webp",
+   "width": 1100,
+   "height": 618,
+   "blur": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAADQAQCdASoQAAkAA4BaJQBOgUwATng8AAD94XwTF/c0/UxY/55qwYXxMOOCcSf07ZkEGt0xg2a7rguijA6HNcKjV6TgBFA3YBgPJEKQBWio/SKiK2GeAkgAAAA="
+  },
+  "marquee-04": {
+   "src": "/media/site/marquee-04.webp",
+   "width": 1100,
+   "height": 733,
+   "blur": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAACQAQCdASoQAAsAA4BaJYwAAjLxxbQA/t3bfBWRoiOv/Z9VbTpasdj0OD+Ee+wCVswRzfFzm4bjhyLGqMNd9r78md23RtZZcMlQazc4EbxKZYgpk4lCI8H+eAA="
+  },
+  "marquee-05": {
+   "src": "/media/site/marquee-05.webp",
+   "width": 1100,
+   "height": 825,
+   "blur": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAABQAgCdASoQAAwAA4BaJYgCdAYtz2/rBHOE1QAA/rg2nqfZfgZ7HGB5O6eSnpA/T4yq3gLOqkbxVltT7VUX40H6G4KrYYBC+LO9W0RI0lGAr8q7igchwgKPFce2dIMxtjtvHLS2Oqu8+7GAAAA="
+  },
+  "marquee-06": {
+   "src": "/media/site/marquee-06.webp",
+   "width": 1100,
+   "height": 825,
+   "blur": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADwAQCdASoQAAwAA4BaJYwC7ACnbu5ZCOAA/jx3JF6fxjwluiaE1ja+hUN5MkFPnMaKYOQaRiYGGYrJep6qB7excjbvGbv1VGTSM9e/K9xHfPMsuCUmFlqH9fF4QQZIiIAAAA=="
+  },
+  "marquee-07": {
+   "src": "/media/site/marquee-07.webp",
+   "width": 1100,
+   "height": 825,
+   "blur": "data:image/webp;base64,UklGRmYAAABXRUJQVlA4IFoAAAAwAgCdASoQAAwAA4BaJagCw7EQgw/q5KWJVAD+CwHxVuY+GDbIKq3rlH5Wyq7XbLok50yLBK7ABtF+88jyy+Hhiy7y6KqrmZt+B6nI6pp9irssg193VYmAAAA="
+  },
+  "marquee-08": {
+   "src": "/media/site/marquee-08.webp",
+   "width": 1100,
+   "height": 619,
+   "blur": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAADwAQCdASoQAAkAA4BaJYgCdADjYTD+WAAA/cTALaFK7xZi9CPqYj670TWO/3yGd4fCOxmwNf0V7zovuKkfn3j1csv1zNzq3QH2nrkPIHAuBFnfYk+lBAAA"
+  },
+  "marquee-09": {
+   "src": "/media/site/marquee-09.webp",
+   "width": 1100,
+   "height": 825,
+   "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAAAQAgCdASoQAAwAA4BaJZQC7AEOu+FSQxcAAPyPkVdTDPTt1MLriTyfEYonuSevGK0zl0qT/XnqQFsUCRPOhJaP9NXTjejs9qwk0bv+Fr6wISYNr+nkeRacMWP12AAA"
+  },
+  "marquee-10": {
+   "src": "/media/site/marquee-10.webp",
+   "width": 1100,
+   "height": 825,
+   "blur": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAAAwAgCdASoQAAwAA4BaJZQC7AEDHypSuwBMAADynKAC8kmA5WXDx0noyEXp4XsLp/fJimnGeHXwYimistbuF2yHEtZrKSP6Vr4gPJlTGUFlM+fJ69wAAA=="
+  },
+  "marquee-11": {
+   "src": "/media/site/marquee-11.webp",
+   "width": 1100,
+   "height": 825,
+   "blur": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAABQAgCdASoQAAwAA4BaJbACdIExGBcNFim7sAAA/trXLr2EiiYOKZ1qPyoARgrvlxK+uJF7oud1yFLJ++0ljDrdu84ebqbspVi2vj9cr61ANAZsM+FLtoi47vUAAA=="
+  },
+  "marquee-12": {
+   "src": "/media/site/marquee-12.webp",
+   "width": 1100,
+   "height": 825,
+   "blur": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAAAwAgCdASoQAAwAA4BaJbACdAYstWKSTr9YAAD+mULsnAbVaiyxxznoYYuAHQvQj5X00jnQTAoEIDn4LSxjv/kEPpbqSLtxoKLhRcWUDLOtcEw4zUPWQ5Ht51EnWeGryfTsA07GRH5n9wfzauUjJJYhcni496AA"
+  }
+ },
+ "posters": [
+  {
+   "type": "networking",
+   "number": 3,
+   "title": "Jalisco al Grito",
+   "slug": "networking-3-jalisco-al-grito",
+   "src": "/media/posters/networking-3-jalisco-al-grito.webp",
+   "width": 1230,
+   "height": 1278,
+   "blur": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAADQAwCdASoQABEAPu1iqU2ppaOiMAgBMB2JaAC06BjrnVSdqDAJkEAA/uy+86HxSLEc5Rcg7W0cj+EU5REoQziWLKUMMU9rUYpOpjGBY9IoDJJk1ZjeocSAJFvYc7/e1vpbK1gwN8WbYAAA"
+  },
+  {
+   "type": "conferencia",
+   "number": 14,
+   "title": "Ruta Élite",
+   "slug": "conferencia-14-ruta-elite",
+   "src": "/media/posters/conferencia-14-ruta-elite.webp",
+   "width": 1290,
+   "height": 1283,
+   "blur": "data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAADQAQCdASoQABAAA4BaJQACIRkpCfqyYAD+3gTC1z9Ebu+IXcRJIwfPvkhcv8gS0B96xrX9OrW5vA1M9fYC+/AeKpwxf94/ezRFRsgszgDOmY5L61D7167T6DQqKgiAoQdGOq8qpVzuS+YbbZkk8LHevE+n+VWoFYAAAA=="
+  },
+  {
+   "type": "networking",
+   "number": 2,
+   "title": "Networking Mundialista",
+   "slug": "networking-2-mundialista",
+   "src": "/media/posters/networking-2-mundialista.webp",
+   "width": 1050,
+   "height": 1400,
+   "blur": "data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAADQAwCdASoQABUAPu1iqU2ppaOiMAgBMB2JZgCw7BPIVHoFUGDRuAAA/r/DS7b4JMy3zBFycGXEOmrcsgKBtJCz/Zf7c65yvmsZ7u1u5FH04mUINkoGGNdtILn2ov1+zLY66oxYXPX1No3NuErFyVnw5kNgUocdeoX2x40MM340evXiIx7l3fYRbNNYU5yQAS/t2AAA"
+  },
+  {
+   "type": "conferencia",
+   "number": 13,
+   "title": "Out of the Feed",
+   "slug": "conferencia-13-out-of-the-feed",
+   "src": "/media/posters/conferencia-13-out-of-the-feed.webp",
+   "width": 1080,
+   "height": 1350,
+   "blur": "data:image/webp;base64,UklGRsIAAABXRUJQVlA4ILYAAADwAwCdASoQABQAPu1iqU2ppaOiMAgBMB2JQAB8ljsvvaZnlMPuF+iSAP7v2CZ5smhk/mQyylfXbhyY+7ilZa3/uplF3tNTS5sJfn8ttubY1KFn/wpvdZqVk7A/sUM1JgJtuwc6jPih5EyASL7psp9mK0v7h46EuHLdSOXWdIEuT2X1B+Z7Teistd46ofWD4uLZb7fQps86Uo/cN9BtFLYE/fMux55fo6sRjX6H/BvYYJmBDMYAAA=="
+  },
+  {
+   "type": "visita",
+   "number": 2,
+   "title": "Centro Logístico Jalisco",
+   "slug": "visita-2-centro-logistico-jalisco",
+   "src": "/media/posters/visita-2-centro-logistico-jalisco.webp",
+   "width": 682,
+   "height": 1024,
+   "blur": "data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAACQBACdASoQABgAPu1iqU2ppaOiMAgBMB2JbACdMvZ8eCnaNJW1w8qXcv8GK3wA+GF6armPrTKhO1IjrmHGN8PLPchAuDyEEvtfdhGNfE4mXeN7Djkuu5/37rrCxsbOjkZz/d9pbqEKyN9rwL5l5E0jQQSmhLeq93dYsl22bQFCXU9HQu6jg8Xmlmnoww0Se2wAAA=="
+  },
+  {
+   "type": "networking",
+   "number": 1,
+   "title": "Encuentro YBL",
+   "slug": "networking-1-encuentro-ybl",
+   "src": "/media/posters/networking-1-encuentro-ybl.webp",
+   "width": 933,
+   "height": 1400,
+   "blur": "data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAABQBACdASoQABgAPu1iqU2ppaOiMAgBMB2JbAC7H8ADAOORIKnD9qfc7dyAAP7n7T+HBBHwfrDxMchoOFTeg0ChBjVIhJp4XacVsbRfvxdyaoNndClAR3JAA7oZ6zM8SgFRbbpRImZuGYqd5OrmMks62Rb48lCNQHiSOICthOOEnAdp81bRlM7h/cZbZx/vxlp/p7BdK5KreF//ru12u9gAVVJseH/TngAAAA=="
+  },
+  {
+   "type": "conferencia",
+   "number": 12,
+   "title": "The Water Code",
+   "slug": "conferencia-12-the-water-code",
+   "src": "/media/posters/conferencia-12-the-water-code.webp",
+   "width": 1082,
+   "height": 1400,
+   "blur": "data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAACwAwCdASoQABUAPu1iqU2ppaOiMAgBMB2JYgAAWqFC+HU/tZdbHAD+1ho4k0f8rqFRy6PRTROoh1z3AZo28LiixBHgUAhpIsMp675MuZ2Bgbbe5ad7NZyt/Hd4GZVJqVQJrxm4XZHPHKwSyVb8u1osWflSTpLYCHip94srF91lLQBHzrBAKxGJBl5JQGTkCSGKrhwP/zYvbN77FnzSAAAA"
+  },
+  {
+   "type": "taller",
+   "number": null,
+   "title": "Finanzas para Dummies",
+   "slug": "taller-finanzas-para-dummies",
+   "src": "/media/posters/taller-finanzas-para-dummies.webp",
+   "width": 1080,
+   "height": 1350,
+   "blur": "data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAABwBACdASoQABQAPu1iqU2ppaOiMAgBMB2JbAC7FQA59sBsp7MyfNUvxmgyQAD+aDlf9tMBnje0sXwRJe0Dr/HaOEsFS1jRu6QJcNQlr1wWohBXSS7eDs8vU8APWtcuUc335OSzYKZRt24v+sVl9NHBO8kygvQ3806V/8iM2DqjcWd0iMsse4AoI0BPtsELLTggHITwAAA="
+  },
+  {
+   "type": "conferencia",
+   "number": 11,
+   "title": "Tech & Talk",
+   "slug": "conferencia-11-tech-and-talk",
+   "src": "/media/posters/conferencia-11-tech-and-talk.webp",
+   "width": 1080,
+   "height": 1350,
+   "blur": "data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAABwBACdASoQABQAPu1iqU2ppaQiMAgBMB2JaAC7MoRgAITIZdYYMKRiJyEGAAD8Z+dJAIWOeW1j5BLG3L+SONFNm/y2wSoZcNxYp8XOtCDOcfPYRpwwxJd2ZjPWeOVS/rzK0/otN8jIkWCOSz7W2kdah3o3Ar/n/beZV2ayXgp5BgHTR52lnzW95w8BXngL0KD1ovPOoAA="
+  },
+  {
+   "type": "conferencia",
+   "number": 10,
+   "title": "Construyendo el Sueño",
+   "slug": "conferencia-10-construyendo-el-sueno",
+   "src": "/media/posters/conferencia-10-construyendo-el-sueno.webp",
+   "width": 1080,
+   "height": 1350,
+   "blur": "data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAABQBACdASoQABQAPu1iqU2ppaOiMAgBMB2JZgCdOUAAyOCOI0jGmgKj6yNQAP2WnDSdDOKieRJNUMYNsTp3ITM4eUQTsnstpyp3raFwqn3Zq9Tz+0P5cGp12uuLVge69H/T3Ffbso2oSMRMXzK4/Iw4xKedR5dgVCl/2o54cbl77hukAAA="
+  },
+  {
+   "type": "conferencia",
+   "number": 9,
+   "title": "Historias que Crean Espacios",
+   "slug": "conferencia-9-historias-que-crean-espacios",
+   "src": "/media/posters/conferencia-9-historias-que-crean-espacios.webp",
+   "width": 1080,
+   "height": 1350,
+   "blur": "data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAADwAwCdASoQABQAPu1iqU2ppaOiMAgBMB2JbACdMoADDr0L5Ohs9nqUAP1J4ThfM9DX+SZYgRM+XXDwE7D/ENqaH+BLPqwDuWpX81B7D11/6NlxV8AEopRwhUkHa0mKi/vaN9jMB4082vyCo2v5HLM+1UZ9Xu4WPKhJUaChE8xv7AK4NqZ/EoLDanuAAA=="
+  },
+  {
+   "type": "visita",
+   "number": 1,
+   "title": "Tequila San Matías",
+   "slug": "visita-1-tequila-san-matias",
+   "src": "/media/posters/visita-1-tequila-san-matias.webp",
+   "width": 1050,
+   "height": 1400,
+   "blur": "data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAABQBACdASoQABUAPu1iqU2ppaOiMAgBMB2JYwC2yCIj+zcgUs8UJ0H3yjrwAP7sBRk66JG0WZozEjdMKeifkEg4A5+gBlOsOTfxZgk46n2IOq4rfgHjqYP/q2PFRMelq3PxnC3zwICTfNUPxkqGsvIETQnMPJU539LblbGU2TZpgAAA"
+  },
+  {
+   "type": "conferencia",
+   "number": 8,
+   "title": "Estrategias con Sabor",
+   "slug": "conferencia-8-estrategias-con-sabor",
+   "src": "/media/posters/conferencia-8-estrategias-con-sabor.webp",
+   "width": 1121,
+   "height": 1400,
+   "blur": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAABwBACdASoQABQAPu1iqU2ppaOiMAgBMB2JagC/ZoAnkACSHwNCB/kFLgoMYAD+84Ha8/YjqYBD/zNuGIl9BUUkirqgQwf6P0fof/d5wV0OSDAyuiREnZe5GhGC7KP1uGf45V4cAyFccEAXCBvocpA/JVR/7bZDBwlP3f/hiylMJVO2cl5fHjF7MlcnLquC+6SA77H0Tst3uUyRWgAAAA=="
+  },
+  {
+   "type": "taller",
+   "number": 3,
+   "title": "Inteligencia Artificial para fomentar la conexión humana",
+   "slug": "taller-3-inteligencia-artificial",
+   "src": "/media/posters/taller-3-inteligencia-artificial.webp",
+   "width": 1080,
+   "height": 1080,
+   "blur": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAADQAQCdASoQABAAA4BaJQBOgCHcpb2gogD+83A0iRrXZjGQmge15zguFp4JxNl0JjVbsMwZBkg84v60cBmCg7lQmEjDj2H6fgAAAA=="
+  },
+  {
+   "type": "conferencia",
+   "number": 7,
+   "title": "La Receta del Triunfo",
+   "slug": "conferencia-7-la-receta-del-triunfo",
+   "src": "/media/posters/conferencia-7-la-receta-del-triunfo.webp",
+   "width": 1050,
+   "height": 1400,
+   "blur": "data:image/webp;base64,UklGRtgAAABXRUJQVlA4IMwAAADwBACdASoQABUAPu1iqU2ppaOiMAgBMB2JbACdMoRwA2ACP7GXMXCT5aesmuEoXAAA+X0a4+x2/uIvn8Up0V3F/UTleN32IdprMj9ElXPfa3JNGc4F0t0sIT64fJD+Zu9VOZGea1ZjCCl2o7/L8Zr3BPH2dzFZ2Yod5ynHcU7WfpZYgSc3ZJo2w0b06NJqnI8e/slOjTHLYhoslfgdZ0Stwh/PDvC+Z3HmR9LXjS7zgOfR9vGUvpwyCr0ZPfE0xvnbf8En7onoW3xAAAA="
+  },
+  {
+   "type": "taller",
+   "number": 2,
+   "title": "Productividad, factor clave en el éxito de los negocios",
+   "slug": "taller-2-productividad",
+   "src": "/media/posters/taller-2-productividad.webp",
+   "width": 1080,
+   "height": 1080,
+   "blur": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADwAQCdASoQABAAA4BaJZwAAudbwNVzncAA/vYw8EU88zveZ/Uugx1oUAKAu4eORaUGh7PWKyGt2J2XusupLmpQgVbRyF1q3Fh3mKu8DDYQAA=="
+  },
+  {
+   "type": "taller",
+   "number": 1,
+   "title": "Metaverso sin límites",
+   "slug": "taller-1-metaverso-sin-limites",
+   "src": "/media/posters/taller-1-metaverso-sin-limites.webp",
+   "width": 1290,
+   "height": 1250,
+   "blur": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAAAQAgCdASoQABAAA4BaJbAC7AEPAiDa2wGTAP72CQjroC4IkEpG01XWb1xrtZvuwpUiIZvd07fL2IY+qsmX6KqYc7+629B2A0PZ5YX5zFmBjcUSbSl2gAAA"
+  },
+  {
+   "type": "conferencia",
+   "number": 6,
+   "title": "Shots de Éxito",
+   "slug": "conferencia-6-shots-de-exito",
+   "src": "/media/posters/conferencia-6-shots-de-exito.webp",
+   "width": 788,
+   "height": 1400,
+   "blur": "data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAABQBACdASoQABwAPu1iqU2ppaOiMAgBMB2JZwAD5aHaN6xzkfiTtWREWqAAAP7lJkh6Db/TkA65ZubTM14kXum3oqywP3pzu2eXgJ35HQQHdqcQCvmg1hGhSm4HI7RlPbSDeWgXeXMKtsOWMrvXVq6T1FGv6uqp3C9HsTfHGBf+wByD/D4Vs1+QGrQ++8l5OIQA1TdoV6HwfW+gAAA="
+  },
+  {
+   "type": "conferencia",
+   "number": 5,
+   "title": "Conexión Inversor-Startup · iBasto",
+   "slug": "conferencia-5-conexion-inversor-startup-ibasto",
+   "src": "/media/posters/conferencia-5-conexion-inversor-startup-ibasto.webp",
+   "width": 990,
+   "height": 1400,
+   "blur": "data:image/webp;base64,UklGRr4AAABXRUJQVlA4ILIAAACQBACdASoQABcAPu1iqU2ppaOiMAgBMB2JbACdH8AgvRf7SWsYBo7u/RQPxAAA/tzskW4qo7sssUBbZR7L94eUNEv2r6puIozEEMhz9m7pNdvLEtg12HfYsijlCXMBbsRKp4jblYl5qCjAdhjCAJbjpUUXoYXlzdzAe68Z4IHK20YKfUDsrRkYxNr0Q2lvgC8Jg3A/5QjY7P8rSCKbdS+caVUTTcgpZWjeLQ++yezkAAAA"
+  },
+  {
+   "type": "conferencia",
+   "number": 5,
+   "title": "Conexión Inversor-Startup · Sozu",
+   "slug": "conferencia-5-conexion-inversor-startup-sozu",
+   "src": "/media/posters/conferencia-5-conexion-inversor-startup-sozu.webp",
+   "width": 990,
+   "height": 1400,
+   "blur": "data:image/webp;base64,UklGRsQAAABXRUJQVlA4ILgAAADwBACdASoQABcAPu1iqU2ppaOiMAgBMB2JbACdH8B4AWio33A/1kBvpnGythCvRYAA/tzsmXcGP8yXH0DrjmKnNHCZzPtyxRm0r+QECclU5/fetgiKXaZGS6uLaOqkzNP4EVT/ff/X4CeG8Uq+Je+kgCt0Qb59NmffcJ39DOMCT0Y8qKYczY1VMebxjXjCAMDCzKy8YcUqX0KZQ/g8X1S+iOcQUdddfSBuOfW9aZRIOq+mEnGSwAAA"
+  },
+  {
+   "type": "conferencia",
+   "number": 4,
+   "title": "Mi historia de emprendimiento · Antonio Lancaster Jones",
+   "slug": "conferencia-4-mi-historia-antonio-lancaster-jones",
+   "src": "/media/posters/conferencia-4-mi-historia-antonio-lancaster-jones.webp",
+   "width": 1290,
+   "height": 1211,
+   "blur": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADwAQCdASoQAA8AA4BaJZwAAu0evoCeOAAA/u8heZSfoJclPU7HWPZoVyBPZdjzGUpeKZC8u9blC2up9cTSyp8ggrjOfypmo3dgHTzLsOAAAA=="
+  },
+  {
+   "type": "conferencia",
+   "number": 3,
+   "title": "Mi historia de emprendimiento · Abraham González Uyeda",
+   "slug": "conferencia-3-mi-historia-abraham-gonzalez-uyeda",
+   "src": "/media/posters/conferencia-3-mi-historia-abraham-gonzalez-uyeda.webp",
+   "width": 1290,
+   "height": 1212,
+   "blur": "data:image/webp;base64,UklGRlwAAABXRUJQVlA4IFAAAADwAQCdASoQAA8AA4BaJYwAAudI7PVB38AA/vMJQuXBd3U4Jfphk1ADTwToCkEuYZpJoxCsTlaEWwzg4yhoEb4ySnqjtGAbJWwu5EHnoJWAAA=="
+  },
+  {
+   "type": "conferencia",
+   "number": 2,
+   "title": "Mi historia de emprendimiento · Marcela Michel",
+   "slug": "conferencia-2-mi-historia-marcela-michel",
+   "src": "/media/posters/conferencia-2-mi-historia-marcela-michel.webp",
+   "width": 1280,
+   "height": 1280,
+   "blur": "data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAAAQAgCdASoQABAAA4BaJZQAAloL83CAzk4AAP7sjzhzvbs4JyEhH53wiYFc2HprBGqFc9sCvTXlU0y5DBxfzpCcSlB58FqtNj381Yv954yLc8GU2FQAAA=="
+  },
+  {
+   "type": "conferencia",
+   "number": 1,
+   "title": "Mi historia de emprendimiento · Aldo de Anda",
+   "slug": "conferencia-1-mi-historia-aldo-de-anda",
+   "src": "/media/posters/conferencia-1-mi-historia-aldo-de-anda.webp",
+   "width": 1278,
+   "height": 1280,
+   "blur": "data:image/webp;base64,UklGRmoAAABXRUJQVlA4IF4AAAAQAgCdASoQABAAA4BaJZQAAp2lzg9tGyQwAP70md8EHnes8bfuNvw4oPswHj04iMj/rdzCjFxLG3DJ9ZiyGntie68dfLsoE9uOpu6gcDbirb1EPgL4vGrD9u07uZAA"
+  }
+ ]
+}

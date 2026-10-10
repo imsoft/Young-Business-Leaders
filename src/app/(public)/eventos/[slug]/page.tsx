@@ -8,7 +8,8 @@ import { getCurrentProfile } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { createPublicClient } from "@/lib/supabase/public";
 import { hasSupabaseEnv } from "@/lib/supabase/env";
-import { formatEventDate, formatEventTime, initials } from "@/lib/format";
+import { formatEventDate, formatEventTime, initials, isPastEvent } from "@/lib/format";
+import { connection } from "next/server";
 import { EventRegistration } from "@/components/site/event-registration";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -43,7 +44,7 @@ async function EventBody({ params }: { params: PageProps<"/eventos/[slug]">["par
     <article>
       <div className="relative bg-gold-gradient">
         {event.cover_url ? (
-          <Image src={event.cover_url} alt="" fill priority sizes="100vw" className="object-cover opacity-40" />
+          <Image src={event.cover_url} alt="" fill preload sizes="100vw" className="object-cover opacity-40" />
         ) : null}
         <div className="relative mx-auto max-w-6xl px-4 py-16 text-ink md:py-24">
           <div className="mb-4 flex flex-wrap gap-2">
@@ -111,8 +112,22 @@ async function AttendeeCount({ event }: { event: Event }) {
   return <Info icon={Users} label="Asistentes" value={value} />;
 }
 
+/** La hora actual solo existe en el request: se lee fuera del render del componente. */
+async function hasEnded(event: Event) {
+  await connection();
+  return isPastEvent(event, Date.now());
+}
+
 /** Lee sesión + registro propio. Siempre dentro de Suspense. */
 async function RegistrationPanel({ event }: { event: Event }) {
+  if (await hasEnded(event)) {
+    return (
+      <div className="rounded-2xl border bg-card p-5 text-sm">
+        <p className="font-semibold">Este evento ya terminó</p>
+        <p className="mt-1 text-muted-foreground">Gracias a quienes nos acompañaron. Revisa los próximos eventos en la agenda.</p>
+      </div>
+    );
+  }
   const profile = await getCurrentProfile();
   let registered = false;
   let full = false;

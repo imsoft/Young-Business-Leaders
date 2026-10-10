@@ -11,6 +11,10 @@ import Image from "next/image";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
 import { FloatingMark, HeroGlow, HeroIntro, HeroLine } from "@/components/motion/hero";
 import { BrandPlaceholder } from "@/components/site/brand-placeholder";
+import { TrajectoryTeaser } from "@/components/site/trajectory";
+import { PhotoMarquee } from "@/components/media/photo-marquee";
+import { Duotone } from "@/components/media/duotone";
+import { marqueePhotos, siteMedia } from "@/lib/media";
 
 const PILLARS = [
   {
@@ -34,7 +38,10 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <Section id="pilares">
+      <div className="pt-6 md:pt-8">
+        <PhotoMarquee photos={marqueePhotos} />
+      </div>
+      <Section id="pilares" className="pt-14 md:pt-20">
         <SectionHeading
           eyebrow="Qué hacemos"
           title="Una comunidad para jóvenes que quieren emprender en serio"
@@ -64,6 +71,8 @@ export default function HomePage() {
           <UpcomingEvents />
         </Section>
       </div>
+
+      <TrajectoryTeaser />
 
       <AlbumsPreview />
 
@@ -115,6 +124,8 @@ export default function HomePage() {
 function Hero() {
   return (
     <section className="relative overflow-hidden bg-gold-gradient">
+      <Duotone image={siteMedia.hero} eager />
+      <div className="absolute inset-0 bg-gradient-to-r from-gold via-gold/75 to-transparent md:via-gold/60" />
       <HeroGlow />
       <div className="absolute inset-0 opacity-[0.12] [background-image:radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:22px_22px]" />
       <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-20 md:grid-cols-[1.2fr_1fr] md:items-center md:py-28">
@@ -152,7 +163,7 @@ function Hero() {
         <FloatingMark className="relative mx-auto aspect-square w-64 md:w-80">
           <div className="relative h-full w-full">
             <div className="absolute inset-0 rounded-full bg-white shadow-2xl" />
-            <Image src="/brand/ybl-mark.svg" alt="Young Business Leaders" fill className="p-16" priority />
+            <Image src="/brand/ybl-mark.svg" alt="Young Business Leaders" fill className="p-16" preload />
           </div>
         </FloatingMark>
       </div>

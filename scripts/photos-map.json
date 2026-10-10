@@ -1,0 +1,474 @@
+{
+  "albums": [
+    {
+      "slug": "out-of-the-feed",
+      "title": "Out of the Feed",
+      "description": "Conferencia #13 · YBL x influencers.",
+      "event_date": "2026-05-25",
+      "cover": "IMG_5803.HEIC",
+      "files": [
+        "IMG_5803.HEIC",
+        "IMG_5769.HEIC",
+        "IMG_5799.HEIC",
+        "IMG_5788.HEIC",
+        "IMG_5786.HEIC"
+      ]
+    },
+    {
+      "slug": "networking",
+      "title": "Networking",
+      "description": "Encuentros para conectar fuera de la sala de juntas.",
+      "event_date": null,
+      "cover": "b9cba7e9-2e85-4063-9bf1-90dbdc69ec57.JPG",
+      "files": [
+        "b9cba7e9-2e85-4063-9bf1-90dbdc69ec57.JPG",
+        "c59eb882-e52a-4615-94f1-86b20ea68b71.JPG",
+        "5057e259-9b01-42bf-839d-3985556c58cb.JPG",
+        "1123dfd2-f1ec-4dde-b2c7-779a13d201a1.JPG",
+        "0aced3bc-207b-44be-92e4-5f0f7e196273.JPG",
+        "243edd8a-9b62-47d3-8275-76d3c9f62725.JPG",
+        "IMG_1733.HEIC",
+        "IMG_1741.HEIC",
+        "IMG_1751.HEIC",
+        "IMG_1762.HEIC",
+        "IMG_1774.HEIC",
+        "IMG_1782.HEIC"
+      ]
+    },
+    {
+      "slug": "visitas-a-empresas",
+      "title": "Visitas a empresas",
+      "description": "Recorridos por Tequila San Matías y el Centro Logístico Jalisco.",
+      "event_date": null,
+      "cover": "6e9dbf34-2707-4277-8acc-390987fee31a.JPG",
+      "files": [
+        "6e9dbf34-2707-4277-8acc-390987fee31a.JPG",
+        "IMG_4875.HEIC",
+        "IMG_4916.heic",
+        "3AB0834A-79A6-4EA2-B372-A16A858B9B0F.JPG",
+        "03461a81-4ddc-49cf-a260-d150d5d42d3e.JPG",
+        "IMG_0753.HEIC",
+        "IMG_0817.HEIC",
+        "D7133B5D-7120-4518-A495-ED5F56D8930E.JPG",
+        "IMG_5930.HEIC",
+        "IMG_5894.HEIC"
+      ]
+    },
+    {
+      "slug": "tech-and-talk",
+      "title": "Tech & Talk",
+      "description": "Conferencia #11.",
+      "event_date": "2025-08-21",
+      "cover": "IMG_7815.JPG",
+      "files": [
+        "IMG_7815.JPG",
+        "IMG_7814.JPG",
+        "IMG_7817.JPG",
+        "IMG_7818.JPG"
+      ]
+    },
+    {
+      "slug": "construyendo-el-sueno",
+      "title": "Construyendo el Sueño",
+      "description": "Conferencia #10.",
+      "event_date": "2025-06-05",
+      "cover": "e548b45c-bef7-400f-be02-bbe89d11cb52.JPG",
+      "files": [
+        "e548b45c-bef7-400f-be02-bbe89d11cb52.JPG",
+        "e332100e-b780-471f-a000-9c8dc4a3e790.JPG",
+        "eb45a054-9675-4882-9f5a-d27c19dfbb94.JPG",
+        "07cc92ee-7ef6-4dda-86aa-80e8daab0870.JPG",
+        "65598142-bbd8-4b19-91fa-9b963bf51dba.JPG",
+        "IMG_6493.HEIC",
+        "IMG_6491.HEIC"
+      ]
+    },
+    {
+      "slug": "historias-que-crean-espacios",
+      "title": "Historias que Crean Espacios",
+      "description": "Conferencia #9.",
+      "event_date": "2025-05-22",
+      "cover": "IMG_6100.HEIC",
+      "files": [
+        "IMG_6100.HEIC",
+        "IMG_6062.HEIC",
+        "IMG_6077.HEIC",
+        "IMG_6057.HEIC"
+      ]
+    },
+    {
+      "slug": "estrategias-con-sabor",
+      "title": "Estrategias con Sabor",
+      "description": "Conferencia #8.",
+      "event_date": "2025-02-13",
+      "cover": "IMG_4331.HEIC",
+      "files": [
+        "IMG_4331.HEIC",
+        "IMG_4335.HEIC",
+        "IMG_4338.HEIC",
+        "IMG_4378.HEIC",
+        "IMG_4281.HEIC"
+      ]
+    },
+    {
+      "slug": "la-receta-del-triunfo",
+      "title": "La Receta del Triunfo",
+      "description": "Conferencia #7.",
+      "event_date": "2024-11-07",
+      "cover": "RDE35.JPG",
+      "files": [
+        "RDE35.JPG",
+        "RDE12.JPG",
+        "RDE30.JPG",
+        "RDE9.JPG",
+        "RDE2.JPG",
+        "RDE3.JPG",
+        "IMG_2423.HEIC"
+      ]
+    },
+    {
+      "slug": "shots-de-exito",
+      "title": "Shots de Éxito",
+      "description": "Conferencia #6.",
+      "event_date": "2024-09-03",
+      "cover": "1 SHOT EXITO (6).HEIC",
+      "files": [
+        "1 SHOT EXITO (6).HEIC",
+        "1 SHOT EXITO (3).HEIC",
+        "1 SHOT EXITO (4).HEIC",
+        "1 SHOT EXITO (5).HEIC",
+        "1 SHOT EXITO (7).HEIC",
+        "1 SHOT EXITO (1).HEIC",
+        "1 SHOT EXITO (2).heic"
+      ]
+    },
+    {
+      "slug": "talleres",
+      "title": "Talleres",
+      "description": "Sesiones prácticas con expertos.",
+      "event_date": null,
+      "cover": "IMG_1949.HEIC",
+      "files": [
+        "IMG_1949.HEIC",
+        "IMG_1935.HEIC",
+        "IMG_1943.HEIC",
+        "IMG_1416.HEIC",
+        "IMG_8157.HEIC"
+      ]
+    },
+    {
+      "slug": "reuniones",
+      "title": "Reuniones",
+      "description": "Reuniones de trabajo de la comunidad.",
+      "event_date": null,
+      "cover": "1ER RO.JPG",
+      "files": [
+        "1ER RO.JPG",
+        "1ER RO(1).JPG",
+        "1ER RO(2).JPG",
+        "1ER RO(3).JPG",
+        "1ER RO(4).JPG",
+        "2DA RO (1).JPG",
+        "2DA RO (2).JPG",
+        "2DA RO (3).JPG",
+        "2DA RO (4).JPG",
+        "2DA RO (5).JPG",
+        "2DA RO (7).JPG",
+        "3ER RO (1).JPG",
+        "3ER RO (2).JPG",
+        "3ER RO (3).JPG",
+        "3ER RO (4).JPG",
+        "3ER RO (5).JPG",
+        "3ER RO (6).JPG",
+        "3ER RO (7).JPG",
+        "IMG_4172.JPG",
+        "IMG_4176.JPG",
+        "85705ce1-d62b-4e5b-a83c-eac20fe06d6c.JPG",
+        "9e08481f-ac89-4665-87d5-aec25245ea4d.JPG",
+        "0ce31bff-b03f-4bb3-8e95-23755cab7a6f.JPG"
+      ]
+    },
+    {
+      "slug": "comunidad",
+      "title": "Comunidad",
+      "description": "Momentos de la comunidad YBL.",
+      "event_date": null,
+      "cover": "IMG_7777.HEIC",
+      "files": [
+        "IMG_7777.HEIC",
+        "IMG_7728.HEIC",
+        "IMG_4996.HEIC",
+        "IMG_5762.JPG",
+        "IMG_7420.HEIC",
+        "98c4935e-e794-4621-8847-d65ea8b13533.JPG",
+        "19fb5324-78cc-467b-b4fd-8c713d58121a.JPG",
+        "96ce028a-ae07-4426-abe2-998b5990bbb6.JPG",
+        "IMG_9235.HEIC",
+        "706d8d02-b020-474c-bc63-cc8b6d40a5f8.JPG",
+        "IMG_4797.JPEG",
+        "IMG_7211.JPG",
+        "IMG_4756.HEIC",
+        "412eb829-e44f-4774-b79a-8f29098d1945.JPG",
+        "7a26a018-6a6c-4dfa-a9bc-e3fc986a61cb.JPG",
+        "7951a793-f604-4a81-bd4b-2d708b506163.JPG",
+        "A963D516-467C-43A9-8E60-DC501E243D8C.JPG",
+        "IMG_1192.HEIC",
+        "IMG_1196.HEIC",
+        "IMG_2758.HEIC",
+        "IMG_2763.HEIC",
+        "IMG_1794.HEIC",
+        "ISIMG-1002051.jpg"
+      ]
+    }
+  ],
+  "site": {
+    "hero": {
+      "file": "IMG_7777.HEIC",
+      "max": 2000
+    },
+    "auth": {
+      "file": "IMG_6100.HEIC",
+      "max": 1600
+    },
+    "nosotros-1": {
+      "file": "IMG_4996.HEIC",
+      "max": 1400
+    },
+    "nosotros-2": {
+      "file": "IMG_5788.HEIC",
+      "max": 1200
+    },
+    "nosotros-3": {
+      "file": "98c4935e-e794-4621-8847-d65ea8b13533.JPG",
+      "max": 1400
+    },
+    "marquee-01": {
+      "file": "RDE35.JPG",
+      "max": 1100
+    },
+    "marquee-02": {
+      "file": "IMG_5803.HEIC",
+      "max": 1100
+    },
+    "marquee-03": {
+      "file": "6e9dbf34-2707-4277-8acc-390987fee31a.JPG",
+      "max": 1100
+    },
+    "marquee-04": {
+      "file": "IMG_7815.JPG",
+      "max": 1100
+    },
+    "marquee-05": {
+      "file": "IMG_4996.HEIC",
+      "max": 1100
+    },
+    "marquee-06": {
+      "file": "IMG_4331.HEIC",
+      "max": 1100
+    },
+    "marquee-07": {
+      "file": "IMG_5930.HEIC",
+      "max": 1100
+    },
+    "marquee-08": {
+      "file": "e548b45c-bef7-400f-be02-bbe89d11cb52.JPG",
+      "max": 1100
+    },
+    "marquee-09": {
+      "file": "IMG_1949.HEIC",
+      "max": 1100
+    },
+    "marquee-10": {
+      "file": "b9cba7e9-2e85-4063-9bf1-90dbdc69ec57.JPG",
+      "max": 1100
+    },
+    "marquee-11": {
+      "file": "IMG_9235.HEIC",
+      "max": 1100
+    },
+    "marquee-12": {
+      "file": "IMG_6100.HEIC",
+      "max": 1100
+    }
+  },
+  "posters": [
+    {
+      "type": "networking",
+      "number": 3,
+      "title": "Jalisco al Grito",
+      "slug": "networking-3-jalisco-al-grito",
+      "file": "Networking #3 Jalisco Al Grito.png"
+    },
+    {
+      "type": "conferencia",
+      "number": 14,
+      "title": "Ruta Élite",
+      "slug": "conferencia-14-ruta-elite",
+      "file": "Conferencia #14 Ruta Elite.jpg"
+    },
+    {
+      "type": "networking",
+      "number": 2,
+      "title": "Networking Mundialista",
+      "slug": "networking-2-mundialista",
+      "file": "Networking #2 FIFA.jpg"
+    },
+    {
+      "type": "conferencia",
+      "number": 13,
+      "title": "Out of the Feed",
+      "slug": "conferencia-13-out-of-the-feed",
+      "file": "Conferencia #13 Out Of the Feed_.png"
+    },
+    {
+      "type": "visita",
+      "number": 2,
+      "title": "Centro Logístico Jalisco",
+      "slug": "visita-2-centro-logistico-jalisco",
+      "file": "Visita a empresa #2 CLJ.png"
+    },
+    {
+      "type": "networking",
+      "number": 1,
+      "title": "Encuentro YBL",
+      "slug": "networking-1-encuentro-ybl",
+      "file": "Networking #1 Encuentro YBL.jpg"
+    },
+    {
+      "type": "conferencia",
+      "number": 12,
+      "title": "The Water Code",
+      "slug": "conferencia-12-the-water-code",
+      "file": "Conferencia #12 The Water Code.jpg"
+    },
+    {
+      "type": "taller",
+      "number": null,
+      "title": "Finanzas para Dummies",
+      "slug": "taller-finanzas-para-dummies",
+      "file": "a82f2e8c-53df-4ff3-818c-6b1065b86834.JPG"
+    },
+    {
+      "type": "conferencia",
+      "number": 11,
+      "title": "Tech & Talk",
+      "slug": "conferencia-11-tech-and-talk",
+      "file": "Conferencia #11 Tech and Talk CANIETI.png"
+    },
+    {
+      "type": "conferencia",
+      "number": 10,
+      "title": "Construyendo el Sueño",
+      "slug": "conferencia-10-construyendo-el-sueno",
+      "file": "Conferencia #10 Construyendo el Sueño.jpg"
+    },
+    {
+      "type": "conferencia",
+      "number": 9,
+      "title": "Historias que Crean Espacios",
+      "slug": "conferencia-9-historias-que-crean-espacios",
+      "file": "Conferencia #9 Historias que Crean Espacios.png"
+    },
+    {
+      "type": "visita",
+      "number": 1,
+      "title": "Tequila San Matías",
+      "slug": "visita-1-tequila-san-matias",
+      "file": "Visita a empresa #1 Tequila San Matias.png"
+    },
+    {
+      "type": "conferencia",
+      "number": 8,
+      "title": "Estrategias con Sabor",
+      "slug": "conferencia-8-estrategias-con-sabor",
+      "file": "Conferencia #8 Estrategias Con Sabor CIAJ.jpg"
+    },
+    {
+      "type": "taller",
+      "number": 3,
+      "title": "Inteligencia Artificial para fomentar la conexión humana",
+      "slug": "taller-3-inteligencia-artificial",
+      "file": "Taller #3 Inteligencia Artificial IA para fomentar la conexion humana.jpg"
+    },
+    {
+      "type": "conferencia",
+      "number": 7,
+      "title": "La Receta del Triunfo",
+      "slug": "conferencia-7-la-receta-del-triunfo",
+      "file": "Conferencia #7 LA RECETA DEL TRIUNFO CANIRAC.jpg"
+    },
+    {
+      "type": "taller",
+      "number": 2,
+      "title": "Productividad, factor clave en el éxito de los negocios",
+      "slug": "taller-2-productividad",
+      "file": "Taller #2 Productividad factor clave en el éxito de los negocios.jpg"
+    },
+    {
+      "type": "taller",
+      "number": 1,
+      "title": "Metaverso sin límites",
+      "slug": "taller-1-metaverso-sin-limites",
+      "file": "Taller #1 Metaverso sin limites.jpg"
+    },
+    {
+      "type": "conferencia",
+      "number": 6,
+      "title": "Shots de Éxito",
+      "slug": "conferencia-6-shots-de-exito",
+      "file": "Conferencia #6 Shots de Éxito CNIT.png"
+    },
+    {
+      "type": "conferencia",
+      "number": 5,
+      "title": "Conexión Inversor-Startup · iBasto",
+      "slug": "conferencia-5-conexion-inversor-startup-ibasto",
+      "file": "Conferencia # 5 Conexión Startup-Investor (1).png"
+    },
+    {
+      "type": "conferencia",
+      "number": 5,
+      "title": "Conexión Inversor-Startup · Sozu",
+      "slug": "conferencia-5-conexion-inversor-startup-sozu",
+      "file": "Conferencia # 5 Conexión Startup-Investor (2).png"
+    },
+    {
+      "type": "conferencia",
+      "number": 4,
+      "title": "Mi historia de emprendimiento · Antonio Lancaster Jones",
+      "slug": "conferencia-4-mi-historia-antonio-lancaster-jones",
+      "file": "Conferencia #4 Mi historia de Emprendimiento Antonio Lancaster Jones CIAJ.jpg"
+    },
+    {
+      "type": "conferencia",
+      "number": 3,
+      "title": "Mi historia de emprendimiento · Abraham González Uyeda",
+      "slug": "conferencia-3-mi-historia-abraham-gonzalez-uyeda",
+      "file": "Conferencia #3 Mi historia de emprendimiento Abraham Gonzalez Uyeda.jpg"
+    },
+    {
+      "type": "conferencia",
+      "number": 2,
+      "title": "Mi historia de emprendimiento · Marcela Michel",
+      "slug": "conferencia-2-mi-historia-marcela-michel",
+      "file": "Conferencia #2 Mi Historia de Emprendimiento Marcel Michel.jpg"
+    },
+    {
+      "type": "conferencia",
+      "number": 1,
+      "title": "Mi historia de emprendimiento · Aldo de Anda",
+      "slug": "conferencia-1-mi-historia-aldo-de-anda",
+      "file": "Conferencia #1 Mi historia de emprendimiento Aldo de Anda.jpg"
+    }
+  ],
+  "skipped": [
+    "2DA RO (6).JPG",
+    "03dc82f5-dc25-4522-ab83-228df87a25d9.JPG",
+    "c355c40a-9195-4c93-9c59-335af75f50e4.JPG",
+    "CIAJ TOÑO.png",
+    "Foto Sello rojo.jpg",
+    "IMG_4304.HEIC",
+    "IMG_5809.jpg",
+    "IMG_7786.HEIC"
+  ]
+}

@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { requireProfile } from "@/lib/auth";
 import { profileSchema, fieldErrors, type FieldErrors } from "@/lib/validation";
+import { processUpload, UNSUPPORTED_IMAGE } from "@/lib/images";
 
 export type ProfileState = { errors?: FieldErrors; message?: string; ok?: boolean } | undefined;
 
@@ -21,11 +22,12 @@ export async function updateProfile(_: ProfileState, formData: FormData): Promis
   if (file instanceof File && file.size > 0) {
     if (!file.type.startsWith("image/")) return { errors: { avatar: "Sube una imagen" } };
     if (file.size > MAX_AVATAR_BYTES) return { errors: { avatar: "Máximo 3 MB" } };
-    const ext = file.name.split(".").pop()?.toLowerCase() || "jpg";
-    const path = `${profile.id}/avatar-${Date.now()}.${ext}`;
+    const img = await processUpload(file, { max: 512, square: true });
+    if (!img || img.ext === "svg") return { errors: { avatar: UNSUPPORTED_IMAGE } };
+    const path = `${profile.id}/avatar-${Date.now()}.webp`;
     const { error } = await supabase.storage
       .from("avatars")
-      .upload(path, file, { contentType: file.type, upsert: true });
+      .upload(path, img.data, { contentType: img.contentType, upsert: true, cacheControl: "31536000" });
     if (error) return { message: "No se pudo subir la foto." };
     avatar_url = supabase.storage.from("avatars").getPublicUrl(path).data.publicUrl;
   }

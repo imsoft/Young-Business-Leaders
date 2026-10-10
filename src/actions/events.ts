@@ -5,6 +5,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { requireMember } from "@/lib/auth";
 import { guestRegistrationSchema, fieldErrors, type FieldErrors } from "@/lib/validation";
+import { isPastEvent } from "@/lib/format";
 
 export type RegistrationState =
   | { errors?: FieldErrors; message?: string; ok?: boolean; already?: boolean }
@@ -14,6 +15,8 @@ export type RegistrationState =
 export async function registerMember(eventId: string, slug: string) {
   const profile = await requireMember(`/eventos/${slug}`);
   const supabase = await createClient();
+  const { data: event } = await supabase.from("events").select("starts_at, ends_at").eq("id", eventId).maybeSingle();
+  if (!event || isPastEvent(event, Date.now())) return { message: "Este evento ya terminó." };
   const { error } = await supabase
     .from("event_registrations")
     .insert({ event_id: eventId, user_id: profile.id });
@@ -49,12 +52,13 @@ export async function registerGuest(_: RegistrationState, formData: FormData): P
   const admin = createAdminClient();
   const { data: event } = await admin
     .from("events")
-    .select("id, slug, published, is_public, capacity")
+    .select("id, slug, published, is_public, capacity, starts_at, ends_at")
     .eq("id", parsed.data.event_id)
     .maybeSingle();
   if (!event || !event.published || !event.is_public) {
     return { message: "Este evento no acepta registros públicos." };
   }
+  if (isPastEvent(event, Date.now())) return { message: "Este evento ya terminó." };
   if (event.capacity) {
     const { data: count } = await admin.rpc("event_attendee_count", { event: event.id });
     if ((count ?? 0) >= event.capacity) return { message: "El cupo está lleno." };
