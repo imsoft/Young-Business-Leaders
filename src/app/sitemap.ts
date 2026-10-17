@@ -4,7 +4,7 @@ import { getAlbums, getPastEvents, getUpcomingEvents } from "@/lib/data/public";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [upcoming, past, albums] = await Promise.all([getUpcomingEvents(100), getPastEvents(100), getAlbums()]);
-  const statics = ["", "/nosotros", "/eventos", "/galeria", "/contacto", "/registro"].map((p) => ({
+  const statics = ["", "/nosotros", "/eventos", "/galeria", "/contacto", "/registro", "/aviso-de-privacidad", "/terminos"].map((p) => ({
     url: `${SITE_URL}${p}`,
     changeFrequency: "weekly" as const,
     priority: p === "" ? 1 : 0.7,

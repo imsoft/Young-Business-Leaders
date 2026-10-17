@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import Link from "next/link";
 import { RegisterForm } from "@/components/forms/register-form";
 import { GoogleButton } from "@/components/forms/google-button";
 import { Separator } from "@/components/ui/separator";
@@ -35,6 +36,11 @@ async function Body({ searchParams }: { searchParams: PageProps<"/registro">["se
   return (
     <>
       <GoogleButton next={next} label="Registrarme con Google" />
+      <p className="-mt-3 text-center text-xs text-muted-foreground">
+        Con Google también aceptas los{" "}
+        <Link href="/terminos" className="underline hover:text-foreground">términos</Link> y el{" "}
+        <Link href="/aviso-de-privacidad" className="underline hover:text-foreground">aviso de privacidad</Link>.
+      </p>
       <div className="flex items-center gap-3 text-xs text-muted-foreground">
         <Separator className="flex-1" /> o con tu correo <Separator className="flex-1" />
       </div>

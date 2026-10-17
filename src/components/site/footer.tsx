@@ -47,7 +47,11 @@ export function SiteFooter() {
       </div>
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-5 text-xs text-white/50 sm:flex-row sm:items-center sm:justify-between">
-          <p>© <Year /> Young Business Leaders MX · Guadalajara, Jalisco</p>
+          <p>
+            © <Year /> Young Business Leaders MX · Guadalajara, Jalisco ·{" "}
+            <Link href="/aviso-de-privacidad" className="hover:text-white">Aviso de privacidad</Link> ·{" "}
+            <Link href="/terminos" className="hover:text-white">Términos</Link>
+          </p>
           <p>
             Desarrollado por{" "}
             <a href="https://imsoft.io" target="_blank" rel="noreferrer" className="font-semibold text-white/70 transition-colors hover:text-gold">

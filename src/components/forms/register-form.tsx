@@ -27,6 +27,11 @@ export function RegisterForm() {
       <SubmitButton pendingText="Creando cuenta…" className="w-full font-semibold">
         Crear cuenta
       </SubmitButton>
+      <p className="text-center text-xs leading-relaxed text-muted-foreground">
+        Al crear tu cuenta aceptas los{" "}
+        <Link href="/terminos" className="underline hover:text-foreground">términos y condiciones</Link> y el{" "}
+        <Link href="/aviso-de-privacidad" className="underline hover:text-foreground">aviso de privacidad</Link>.
+      </p>
       <p className="text-center text-sm text-muted-foreground">
         ¿Ya tienes cuenta?{" "}
         <Link href="/login" className="font-medium text-foreground underline">

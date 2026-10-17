@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Field, FormMessage } from "@/components/forms/field";
 import { SubmitButton } from "@/components/forms/submit-button";
+import { PrivacyNote } from "@/components/forms/privacy-note";
 
 export function ContactForm() {
   const [state, action] = useActionState<ContactState, FormData>(sendContact, undefined);
@@ -28,6 +29,7 @@ export function ContactForm() {
       <SubmitButton pendingText="Enviando…" className="font-semibold">
         Enviar mensaje
       </SubmitButton>
+      <PrivacyNote purpose="responder tu mensaje" />
     </form>
   );
 }

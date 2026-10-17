@@ -8,6 +8,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Field, FormMessage } from "@/components/forms/field";
 import { SubmitButton } from "@/components/forms/submit-button";
+import { PrivacyNote } from "@/components/forms/privacy-note";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -99,6 +100,7 @@ function GuestForm({ eventId }: { eventId: string }) {
       <p className="text-xs text-muted-foreground">
         ¿Ya eres miembro? <Link href="/login" className="underline">Inicia sesión</Link> para registrarte con tu cuenta.
       </p>
+      <PrivacyNote purpose="tu registro y para avisarte de cambios en este evento" />
     </form>
   );
 }

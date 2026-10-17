@@ -22,3 +22,12 @@ export const INDUSTRIES = [
 ] as const;
 
 export const SPONSOR_TIERS = ["fundador", "patrocinador", "aliado"] as const;
+
+/** Datos del responsable para el aviso de privacidad y los términos. */
+export const LEGAL = {
+  name: "Young Business Leaders MX",
+  short: "YBL",
+  location: "Guadalajara, Jalisco, México",
+  email: CONTACT_EMAIL,
+  updated: "17 de octubre de 2026",
+} as const;
