@@ -8,7 +8,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { redirect } from "next/navigation";
 
-export const metadata: Metadata = { title: "Solicitud en revisión" };
+export const metadata: Metadata = { title: "Solicitud en revisión", robots: { index: false, follow: false } };
 
 export default function PendientePage() {
   return (

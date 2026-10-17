@@ -3,7 +3,9 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { CalendarDays, Clock, MapPin, Users } from "lucide-react";
-import { getEventBySlug } from "@/lib/data/public";
+import { getEventBySlug, getEventSlugs } from "@/lib/data/public";
+import { JsonLd } from "@/components/seo/json-ld";
+import { eventJsonLd } from "@/lib/seo";
 import { getCurrentProfile } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { createPublicClient } from "@/lib/supabase/public";
@@ -16,14 +18,30 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { Event } from "@/lib/types";
 
+/**
+ * Prerenderiza los eventos publicados para que su título e imagen para compartir vayan en el <head>.
+ * Los que se creen después se sirven con el shell y quedan en caché tras la primera visita.
+ * Con Cache Components la lista no puede ir vacía: el placeholder resuelve a 404.
+ */
+export async function generateStaticParams() {
+  const slugs = await getEventSlugs();
+  return slugs.length ? slugs.map((slug) => ({ slug })) : [{ slug: "__placeholder__" }];
+}
+
 export async function generateMetadata({ params }: PageProps<"/eventos/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const event = await getEventBySlug(slug);
-  if (!event) return { title: "Evento" };
+  if (!event) return { title: "Evento no encontrado", robots: { index: false } };
+  const when = `${formatEventDate(event.starts_at)}, ${formatEventTime(event.starts_at)}`;
+  const description =
+    event.summary ?? `${event.title}: ${when}${event.location ? ` en ${event.location}` : ""}. Evento de Young Business Leaders MX.`;
+  const images = [event.cover_url ?? "/opengraph-image"];
   return {
     title: event.title,
-    description: event.summary ?? undefined,
-    openGraph: event.cover_url ? { images: [event.cover_url] } : undefined,
+    description,
+    alternates: { canonical: `/eventos/${event.slug}` },
+    openGraph: { type: "website", title: event.title, description, url: `/eventos/${event.slug}`, images },
+    twitter: { card: "summary_large_image", title: event.title, description, images },
   };
 }
 
@@ -42,6 +60,7 @@ async function EventBody({ params }: { params: PageProps<"/eventos/[slug]">["par
 
   return (
     <article>
+      <JsonLd data={eventJsonLd(event)} />
       <div className="relative bg-gold-gradient">
         {event.cover_url ? (
           <Image src={event.cover_url} alt="" fill preload sizes="100vw" className="object-cover opacity-40" />

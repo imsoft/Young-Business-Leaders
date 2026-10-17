@@ -3,11 +3,27 @@ import { NextResponse, type NextRequest } from "next/server";
 
 const PROTECTED = ["/comunidad", "/admin"];
 
+function siteHost() {
+  try {
+    const host = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "").hostname;
+    return host && !host.endsWith(".vercel.app") && host !== "localhost" ? host : null;
+  } catch {
+    return null;
+  }
+}
+
 /**
  * Refresca la sesión de Supabase en cada request y hace un redirect optimista
  * en rutas protegidas. La autorización real vive en src/lib/auth.ts.
  */
 export async function proxy(request: NextRequest) {
+  // En producción, *.vercel.app sirve el mismo sitio: lo mandamos al dominio propio para no duplicar contenido.
+  const canonicalHost = siteHost();
+  if (process.env.VERCEL_ENV === "production" && canonicalHost && request.nextUrl.hostname.endsWith(".vercel.app")) {
+    const target = new URL(`${request.nextUrl.pathname}${request.nextUrl.search}`, `https://${canonicalHost}`);
+    return NextResponse.redirect(target, 308);
+  }
+
   let response = NextResponse.next({ request });
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;

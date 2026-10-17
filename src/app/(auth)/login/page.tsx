@@ -5,7 +5,7 @@ import { GoogleButton } from "@/components/forms/google-button";
 import { Separator } from "@/components/ui/separator";
 import { FormMessage } from "@/components/forms/field";
 
-export const metadata: Metadata = { title: "Iniciar sesión" };
+export const metadata: Metadata = { title: "Iniciar sesión", robots: { index: false, follow: true } };
 
 export default function LoginPage({ searchParams }: PageProps<"/login">) {
   return (

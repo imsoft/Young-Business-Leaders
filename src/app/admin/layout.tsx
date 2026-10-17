@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { CalendarDays, Handshake, Images, Inbox, LayoutDashboard, Users } from "lucide-react";
@@ -14,6 +15,8 @@ const NAV = [
   { href: "/admin/patrocinadores", label: "Patrocinadores", icon: Handshake },
   { href: "/admin/mensajes", label: "Mensajes", icon: Inbox },
 ];
+
+export const metadata: Metadata = { robots: { index: false, follow: false } };
 
 export default function AdminLayout({ children }: LayoutProps<"/admin">) {
   return (

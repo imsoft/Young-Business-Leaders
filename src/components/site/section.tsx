@@ -23,18 +23,21 @@ export function SectionHeading({
   title,
   description,
   align = "left",
+  as: Heading = "h2",
 }: {
   eyebrow?: string;
   title: string;
   description?: string;
   align?: "left" | "center";
+  /** Usa "h1" cuando el encabezado es el título principal de la página. */
+  as?: "h1" | "h2";
 }) {
   return (
     <Reveal className={cn("mb-10 max-w-2xl", align === "center" && "mx-auto text-center")}>
       {eyebrow ? (
         <p className="mb-2 text-xs font-bold tracking-[0.2em] text-gold-deep uppercase">{eyebrow}</p>
       ) : null}
-      <h2 className="font-heading text-3xl font-extrabold tracking-tight text-balance md:text-4xl">{title}</h2>
+      <Heading className="font-heading text-3xl font-extrabold tracking-tight text-balance md:text-4xl">{title}</Heading>
       {description ? <p className="mt-3 text-base text-muted-foreground md:text-lg">{description}</p> : null}
     </Reveal>
   );

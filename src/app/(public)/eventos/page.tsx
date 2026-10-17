@@ -6,8 +6,10 @@ import { Stagger, StaggerItem } from "@/components/motion/reveal";
 import { TrajectoryArchive, TrajectoryStats } from "@/components/site/trajectory";
 
 export const metadata: Metadata = {
-  title: "Eventos",
-  description: "Conferencias, talleres y reuniones de Young Business Leaders MX.",
+  title: "Eventos para emprendedores en Guadalajara",
+  description:
+    "Conferencias, talleres, networking y visitas a empresas para jóvenes emprendedores en Guadalajara y Jalisco. Consulta la agenda y regístrate gratis.",
+  alternates: { canonical: "/eventos" },
 };
 
 export default async function EventosPage() {
@@ -17,6 +19,7 @@ export default async function EventosPage() {
       <div className="bg-cream">
         <Section className="py-14 md:py-16">
           <SectionHeading
+            as="h1"
             eyebrow="Agenda"
             title="Eventos"
             description="Conferencias, talleres y reuniones. Los eventos abiertos aceptan registro sin cuenta; los de miembros requieren aprobación."

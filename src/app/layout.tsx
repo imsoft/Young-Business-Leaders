@@ -19,16 +19,17 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} · ${SITE_TAGLINE}`,
+    default: `${SITE_NAME} | Jóvenes emprendedores en Jalisco`,
     template: `%s · YBL`,
   },
-  description:
-    "Comunidad de jóvenes emprendedores en Jalisco. Conviértete en emprendedor, inspírate con eventos y talleres, y crece personal y profesionalmente.",
+  description: `${SITE_TAGLINE}. Comunidad de jóvenes emprendedores en Guadalajara y Jalisco: conferencias, talleres, networking y visitas a empresas.`,
+  applicationName: SITE_NAME,
   openGraph: {
     type: "website",
     locale: "es_MX",
     siteName: SITE_NAME,
   },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

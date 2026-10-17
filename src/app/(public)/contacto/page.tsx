@@ -7,7 +7,12 @@ import { SponsorsStrip } from "@/components/site/sponsors-strip";
 import { CONTACT_EMAIL, INSTAGRAM_URL, WHATSAPP_URL } from "@/lib/constants";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
 
-export const metadata: Metadata = { title: "Contacto", description: "Escríbenos o súmate como patrocinador de YBL." };
+export const metadata: Metadata = {
+  title: "Contacto y patrocinios",
+  description:
+    "Escríbenos para dar una charla, patrocinar un evento de Young Business Leaders o resolver dudas sobre la comunidad de emprendedores en Jalisco.",
+  alternates: { canonical: "/contacto" },
+};
 
 export default function ContactoPage() {
   return (
@@ -15,6 +20,7 @@ export default function ContactoPage() {
       <Section className="grid gap-12 md:grid-cols-2">
         <div>
           <SectionHeading
+            as="h1"
             eyebrow="Contacto"
             title="Hablemos"
             description="¿Quieres dar una charla, patrocinar un evento o tienes dudas sobre la comunidad? Escríbenos."

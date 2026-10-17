@@ -7,13 +7,18 @@ import { formatShortDate } from "@/lib/format";
 import { Stagger, StaggerItem } from "@/components/motion/reveal";
 import { BrandPlaceholder } from "@/components/site/brand-placeholder";
 
-export const metadata: Metadata = { title: "Galería", description: "Fotos de talleres, conferencias y reuniones de YBL." };
+export const metadata: Metadata = {
+  title: "Galería de eventos",
+  description:
+    "Fotos de conferencias, talleres, networking y visitas a empresas de la comunidad Young Business Leaders en Jalisco.",
+  alternates: { canonical: "/galeria" },
+};
 
 export default async function GaleriaPage() {
   const albums = await getAlbums();
   return (
     <Section>
-      <SectionHeading eyebrow="Momentos" title="Galería" description="Talleres, conferencias y reuniones de la comunidad." />
+      <SectionHeading as="h1" eyebrow="Momentos" title="Galería" description="Talleres, conferencias y reuniones de la comunidad." />
       {albums.length === 0 ? (
         <p className="rounded-2xl border border-dashed p-10 text-center text-muted-foreground">Pronto subiremos fotos.</p>
       ) : (
@@ -23,7 +28,7 @@ export default async function GaleriaPage() {
             <Link href={`/galeria/${a.slug}`} className="group block h-full overflow-hidden rounded-2xl border bg-card shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
               <div className="relative aspect-[16/10] overflow-hidden sm:aspect-[4/3]">
                 {a.cover_url ? (
-                  <Image src={a.cover_url} alt="" fill sizes="(min-width:1024px) 33vw, 50vw" className="object-cover transition duration-500 group-hover:scale-105" />
+                  <Image src={a.cover_url} alt={`Portada del álbum ${a.title}`} fill sizes="(min-width:1024px) 33vw, 50vw" className="object-cover transition duration-500 group-hover:scale-105" />
                 ) : (
                   <BrandPlaceholder className="transition duration-500 group-hover:scale-105" />
                 )}

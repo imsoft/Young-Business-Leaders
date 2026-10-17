@@ -9,8 +9,10 @@ import Image from "next/image";
 import { siteMedia, type MediaImage } from "@/lib/media";
 
 export const metadata: Metadata = {
-  title: "Nosotros",
-  description: "Qué es Young Business Leaders MX y por qué existe.",
+  title: "Quiénes somos",
+  description:
+    "Young Business Leaders MX es una comunidad de jóvenes emprendedores en Jalisco. Organizamos conferencias, talleres, networking y visitas a empresas.",
+  alternates: { canonical: "/nosotros" },
 };
 
 const VALUES = [
@@ -26,6 +28,7 @@ export default function NosotrosPage() {
       <div className="bg-cream">
         <Section className="py-16 md:py-20">
           <SectionHeading
+            as="h1"
             eyebrow="Nosotros"
             title="Jóvenes que conectan un Jalisco más grande"
             description="Young Business Leaders (YBL) es una comunidad de jóvenes emprendedores en Jalisco. Organizamos conferencias, talleres y reuniones para que quienes están construyendo un negocio tengan con quién aprender, a quién preguntarle y con quién hacer equipo."

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteHeader } from "@/components/site/header";
 import { SiteFooter } from "@/components/site/footer";
@@ -6,6 +7,8 @@ import { SiteFooter } from "@/components/site/footer";
  * /comunidad/perfil es accesible para pendientes (deben completar su perfil);
  * el resto exige miembro aprobado. El guard vive en cada página.
  */
+export const metadata: Metadata = { robots: { index: false, follow: false } };
+
 export default function CommunityLayout({ children }: LayoutProps<"/comunidad">) {
   return (
     <>

@@ -53,6 +53,16 @@ export async function getEventBySlug(slug: string): Promise<Event | null> {
   return data ?? null;
 }
 
+/** Slugs de todos los eventos publicados, para prerenderizarlos en el build. */
+export async function getEventSlugs(): Promise<string[]> {
+  "use cache";
+  cacheTag(TAGS.events);
+  cacheLife("hours");
+  if (!hasSupabaseEnv()) return [];
+  const { data } = await createPublicClient().from("events").select("slug").eq("published", true).limit(500);
+  return (data ?? []).map((e) => e.slug);
+}
+
 export async function getAlbums(): Promise<GalleryAlbum[]> {
   "use cache";
   cacheTag(TAGS.gallery);

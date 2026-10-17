@@ -9,13 +9,30 @@ import { Stagger, StaggerItem } from "@/components/motion/reveal";
 import { Lightbox, LightboxTrigger } from "@/components/media/lightbox";
 import { dimsFromUrl } from "@/lib/media";
 import { Section, SectionHeading } from "@/components/site/section";
-import { getAlbumWithPhotos } from "@/lib/data/public";
+import { getAlbumWithPhotos, getAlbums } from "@/lib/data/public";
 import { formatShortDate } from "@/lib/format";
+
+/** Igual que los eventos: los álbumes publicados se prerenderizan con su metadata en el <head>. */
+export async function generateStaticParams() {
+  const albums = await getAlbums();
+  return albums.length ? albums.map((a) => ({ slug: a.slug })) : [{ slug: "__placeholder__" }];
+}
 
 export async function generateMetadata({ params }: PageProps<"/galeria/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const data = await getAlbumWithPhotos(slug);
-  return { title: data?.album.title ?? "Álbum" };
+  if (!data) return { title: "Álbum no encontrado", robots: { index: false } };
+  const { album, photos } = data;
+  const title = `${album.title} · Galería`;
+  const description = `${album.description ? `${album.description} ` : ""}${photos.length} fotos de la comunidad Young Business Leaders en Jalisco.`;
+  const images = [album.cover_url ?? "/opengraph-image"];
+  return {
+    title,
+    description,
+    alternates: { canonical: `/galeria/${album.slug}` },
+    openGraph: { type: "website", title, description, url: `/galeria/${album.slug}`, images },
+    twitter: { card: "summary_large_image", title, description, images },
+  };
 }
 
 export default function AlbumPage({ params }: PageProps<"/galeria/[slug]">) {
@@ -41,6 +58,7 @@ async function AlbumBody({ params }: { params: PageProps<"/galeria/[slug]">["par
         <ArrowLeft className="size-4" /> Galería
       </Link>
       <SectionHeading
+        as="h1"
         eyebrow={album.event_date ? formatShortDate(album.event_date) : undefined}
         title={album.title}
         description={album.description ?? undefined}

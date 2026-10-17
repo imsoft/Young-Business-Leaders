@@ -6,7 +6,12 @@ import { GoogleButton } from "@/components/forms/google-button";
 import { Separator } from "@/components/ui/separator";
 import { FormMessage } from "@/components/forms/field";
 
-export const metadata: Metadata = { title: "Únete" };
+export const metadata: Metadata = {
+  title: "Únete a la comunidad",
+  description:
+    "Crea tu cuenta en Young Business Leaders MX y solicita acceso al directorio de jóvenes emprendedores de Jalisco y a los eventos para miembros.",
+  alternates: { canonical: "/registro" },
+};
 
 export default function RegistroPage({ searchParams }: PageProps<"/registro">) {
   return (

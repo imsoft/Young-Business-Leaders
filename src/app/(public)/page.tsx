@@ -8,6 +8,9 @@ import { getUpcomingEvents, getAlbums } from "@/lib/data/public";
 import { INSTAGRAM_URL } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/json-ld";
+import { organizationJsonLd } from "@/lib/seo";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/reveal";
 import { FloatingMark, HeroGlow, HeroIntro, HeroLine } from "@/components/motion/hero";
 import { BrandPlaceholder } from "@/components/site/brand-placeholder";
@@ -34,9 +37,12 @@ const PILLARS = [
   },
 ];
 
+export const metadata: Metadata = { alternates: { canonical: "/" } };
+
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={organizationJsonLd()} />
       <Hero />
       <div className="pt-6 md:pt-8">
         <PhotoMarquee photos={marqueePhotos} />
@@ -207,7 +213,7 @@ async function AlbumsPreview() {
         <StaggerItem key={a.id}>
         <Link href={`/galeria/${a.slug}`} className="group relative block aspect-square overflow-hidden rounded-2xl">
           {a.cover_url ? (
-            <Image src={a.cover_url} alt="" fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover transition duration-500 group-hover:scale-105" />
+            <Image src={a.cover_url} alt={`Portada del álbum ${a.title}`} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover transition duration-500 group-hover:scale-105" />
           ) : (
             <BrandPlaceholder className="transition duration-500 group-hover:scale-105" />
           )}
