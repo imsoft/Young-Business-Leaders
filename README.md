@@ -17,10 +17,19 @@ Sin keys de Supabase el sitio corre con listas vacías (útil para maquetar).
 1. Crea un proyecto en supabase.com (o `supabase start` para local).
 2. Ejecuta `supabase/migrations/20261008000000_init.sql` en el SQL Editor (o `supabase db push`).
 3. Opcional: `supabase/seed.sql` para eventos y álbumes de ejemplo.
-4. Auth → Providers: activa **Google** y agrega `https://<tu-dominio>/auth/callback` y `http://localhost:3000/auth/callback` como redirect URLs.
+4. Auth → Providers: activa **Google**. En URL Configuration: Site URL `https://yblmx.org` y redirect URLs `https://yblmx.org/auth/callback` y `http://localhost:3000/auth/callback`.
 5. Pega en `.env.local`: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`.
 6. Hazte admin: regístrate en el sitio y corre en SQL
    `update public.profiles set is_admin = true, status = 'approved' where email = 'tu@correo';`
+
+## Dominio
+
+Producción: **https://yblmx.org** (Namecheap como registrador, DNS en Cloudflare, hosting en Vercel).
+
+- Cloudflare DNS: `A @ → IP que indica Vercel` y `CNAME www → valor que indica Vercel`, ambos en **DNS only** (nube gris).
+- Vercel → Domains: `yblmx.org` principal y `www.yblmx.org` con redirección 308 al principal.
+- Vercel → Environment Variables: `NEXT_PUBLIC_SITE_URL=https://yblmx.org`.
+- Correo `hola@yblmx.org`: Cloudflare → Email Routing, reenvío al correo del equipo.
 
 ## Estructura
 
