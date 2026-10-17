@@ -1,12 +1,12 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { safeNextPath } from "@/lib/safe-redirect";
 
 /** Intercambia el código de OAuth / magic link por una sesión. */
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = request.nextUrl;
   const code = searchParams.get("code");
-  const nextParam = searchParams.get("next") ?? "/comunidad";
-  const next = nextParam.startsWith("/") && !nextParam.startsWith("//") ? nextParam : "/comunidad";
+  const next = safeNextPath(searchParams.get("next"));
 
   if (code) {
     const supabase = await createClient();

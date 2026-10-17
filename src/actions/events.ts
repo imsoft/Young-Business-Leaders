@@ -6,6 +6,7 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { requireMember } from "@/lib/auth";
 import { guestRegistrationSchema, fieldErrors, type FieldErrors } from "@/lib/validation";
 import { isPastEvent } from "@/lib/format";
+import { TURNSTILE_FAILED, verifyTurnstile } from "@/lib/turnstile";
 
 export type RegistrationState =
   | { errors?: FieldErrors; message?: string; ok?: boolean; already?: boolean }
@@ -48,6 +49,7 @@ export async function registerGuest(_: RegistrationState, formData: FormData): P
 
   const parsed = guestRegistrationSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) return { errors: fieldErrors(parsed.error) };
+  if (!(await verifyTurnstile(formData.get("cf-turnstile-response")))) return { message: TURNSTILE_FAILED };
 
   const admin = createAdminClient();
   const { data: event } = await admin

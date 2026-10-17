@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Field, FormMessage } from "@/components/forms/field";
 import { SubmitButton } from "@/components/forms/submit-button";
 import { PrivacyNote } from "@/components/forms/privacy-note";
+import { Turnstile } from "@/components/forms/turnstile";
 import { cn } from "@/lib/utils";
 
 type Props = {
@@ -93,6 +94,7 @@ function GuestForm({ eventId }: { eventId: string }) {
       <Field label="Correo" htmlFor="guest_email" error={state?.errors?.guest_email}>
         <Input id="guest_email" name="guest_email" type="email" required autoComplete="email" />
       </Field>
+      <Turnstile resetKey={state} />
       <FormMessage message={state?.message} />
       <SubmitButton pendingText="Registrando…" className="font-semibold">
         Registrarme

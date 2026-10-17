@@ -310,3 +310,5 @@ drop policy if exists "media: admin writes" on storage.objects;
 create policy "media: admin writes" on storage.objects
   for all using (bucket_id = 'media' and public.is_admin())
   with check (bucket_id = 'media' and public.is_admin());
+
+-- Ver también 20261017000000_security_hardening.sql (privilegios por columna, límites y storage).

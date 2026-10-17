@@ -8,10 +8,9 @@ import { SITE_URL } from "@/lib/constants";
 
 export type AuthState = { errors?: FieldErrors; message?: string } | undefined;
 
-function safeNext(next: FormDataEntryValue | null) {
-  const value = typeof next === "string" ? next : "";
-  return value.startsWith("/") && !value.startsWith("//") ? value : "/comunidad";
-}
+import { safeNextPath } from "@/lib/safe-redirect";
+
+const safeNext = (next: FormDataEntryValue | null) => safeNextPath(next);
 
 async function origin() {
   const h = await headers();

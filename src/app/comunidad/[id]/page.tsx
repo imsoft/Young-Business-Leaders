@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { ArrowLeft, Building2, Globe, MapPin } from "lucide-react";
 import { InstagramIcon, LinkedinIcon } from "@/components/site/brand-icons";
-import { requireMember } from "@/lib/auth";
+import { PROFILE_COLUMNS, requireMember } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -25,7 +25,7 @@ async function Body({ params }: { params: PageProps<"/comunidad/[id]">["params"]
   const { id } = await params;
   await requireMember(`/comunidad/${id}`);
   const supabase = await createClient();
-  const { data: m } = await supabase.from("profiles").select("*").eq("id", id).maybeSingle();
+  const { data: m } = await supabase.from("profiles").select(PROFILE_COLUMNS).eq("id", id).maybeSingle();
   if (!m) notFound();
 
   const links = [

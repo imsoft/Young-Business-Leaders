@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Field, FormMessage } from "@/components/forms/field";
 import { SubmitButton } from "@/components/forms/submit-button";
 import { PrivacyNote } from "@/components/forms/privacy-note";
+import { Turnstile } from "@/components/forms/turnstile";
 
 export function ContactForm() {
   const [state, action] = useActionState<ContactState, FormData>(sendContact, undefined);
@@ -25,6 +26,7 @@ export function ContactForm() {
       <Field label="Mensaje" htmlFor="message" error={state?.errors?.message}>
         <Textarea id="message" name="message" rows={5} required />
       </Field>
+      <Turnstile resetKey={state} />
       <FormMessage message={state?.message} />
       <SubmitButton pendingText="Enviando…" className="font-semibold">
         Enviar mensaje

@@ -6,6 +6,8 @@ import { MemberCard } from "@/components/community/member-card";
 import { DirectoryFilters } from "@/components/community/directory-filters";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Stagger, StaggerItem } from "@/components/motion/reveal";
+import { sanitizeSearch } from "@/lib/search";
+import { INDUSTRIES } from "@/lib/constants";
 
 export const metadata: Metadata = { title: "Directorio de miembros" };
 
@@ -29,8 +31,8 @@ export default function DirectoryPage({ searchParams }: PageProps<"/comunidad">)
 async function Members({ searchParams }: { searchParams: PageProps<"/comunidad">["searchParams"] }) {
   await requireMember("/comunidad");
   const sp = await searchParams;
-  const q = typeof sp.q === "string" ? sp.q.trim() : "";
-  const industria = typeof sp.industria === "string" ? sp.industria : "";
+  const q = sanitizeSearch(sp.q);
+  const industria = INDUSTRIES.find((i) => i === sp.industria) ?? "";
 
   const supabase = await createClient();
   let query = supabase
@@ -41,7 +43,7 @@ async function Members({ searchParams }: { searchParams: PageProps<"/comunidad">
     .limit(200);
   if (industria) query = query.eq("industry", industria);
   if (q) {
-    const like = `%${q.replace(/[%_]/g, "")}%`;
+    const like = `%${q}%`;
     query = query.or(`full_name.ilike.${like},company.ilike.${like},city.ilike.${like},headline.ilike.${like}`);
   }
   const { data } = await query;
