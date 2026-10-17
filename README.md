@@ -59,6 +59,16 @@ node scripts/photos-import.mjs <carpeta> <tmp>            # comprime, sube álbu
 
   Acepta JPG, PNG y HEIC (HEIC se convierte con `sips`, solo macOS). El nombre de cada foto subida termina en `-ANCHOxALTO.webp`; la galería lee de ahí las dimensiones para reservar el espacio exacto.
 
+## Correos
+
+Los correos de Supabase Auth (confirmación, invitación, enlace mágico, cambio de correo, recuperación, reautenticación y avisos de seguridad) usan plantillas con la marca en `supabase/templates/`. Se generan con `node scripts/build-email-templates.mjs` y se suben con:
+
+```sh
+SUPABASE_ACCESS_TOKEN=sbp_xxx node scripts/push-email-templates.mjs
+```
+
+Los enlaces apuntan a `/auth/confirm?token_hash=…`, que funciona aunque el correo se abra en otro dispositivo. El envío sale por SMTP de Resend como `no-reply@yblmx.org`.
+
 ## Scripts
 
 ```sh

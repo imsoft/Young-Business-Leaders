@@ -27,7 +27,15 @@ async function Body({ searchParams }: { searchParams: PageProps<"/login">["searc
   const error = typeof sp.error === "string" ? sp.error : undefined;
   return (
     <>
-      {error ? <FormMessage message="No pudimos completar el inicio de sesión. Intenta de nuevo." /> : null}
+      {error ? (
+        <FormMessage
+          message={
+            error === "enlace"
+              ? "El enlace ya expiró o ya se usó. Inicia sesión o pide uno nuevo."
+              : "No pudimos completar el inicio de sesión. Intenta de nuevo."
+          }
+        />
+      ) : null}
       <GoogleButton next={next} />
       <div className="flex items-center gap-3 text-xs text-muted-foreground">
         <Separator className="flex-1" /> o con tu correo <Separator className="flex-1" />
