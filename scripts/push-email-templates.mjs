@@ -1,7 +1,9 @@
 // Sube las plantillas de supabase/templates/ a Supabase Auth con la Management API.
 // Solo envía asuntos y plantillas; no toca ningún otro ajuste de Auth.
 //
-// Uso (el token NO se guarda en el repo; créalo en supabase.com/dashboard/account/tokens y bórralo al terminar):
+// El token necesita el permiso "Project Settings → Read & Write" (project_admin_write), limitado a este proyecto
+// y con la expiración más corta. No lo pegues en chats ni lo guardes en el repo; bórralo al terminar.
+// Uso:
 //   SUPABASE_ACCESS_TOKEN=sbp_xxx node scripts/push-email-templates.mjs [--dry]
 import { readFileSync } from "node:fs";
 
@@ -34,6 +36,10 @@ async function patch(label, body) {
     body: JSON.stringify(body),
   });
   console.log(`${res.ok ? "ok   " : "ERROR"} ${label} (${res.status})${res.ok ? "" : ": " + (await res.text()).slice(0, 300)}`);
+  if (res.status === 403) {
+    console.log('  → El token necesita "Project Settings → Read & Write". Crea otro o pega las plantillas a mano.');
+    process.exit(1);
+  }
   return res.ok;
 }
 
