@@ -1,3 +1,4 @@
+import { openGraphFor } from "@/lib/og/page-metadata";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Link from "next/link";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
   description:
     "Crea tu cuenta en Young Business Leaders MX y solicita acceso al directorio de jóvenes emprendedores de Jalisco y a los eventos para miembros.",
   alternates: { canonical: "/registro" },
+  openGraph: openGraphFor({ path: "/registro", title: "Únete a la comunidad · YBL", description: "Crea tu cuenta en Young Business Leaders MX y solicita acceso al directorio de jóvenes emprendedores de Jalisco y a los eventos para miembros." }),
 };
 
 export default function RegistroPage({ searchParams }: PageProps<"/registro">) {

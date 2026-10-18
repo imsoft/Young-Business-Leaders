@@ -1,3 +1,4 @@
+import { openGraphFor } from "@/lib/og/page-metadata";
 import type { Metadata } from "next";
 import { Mail, MessageCircle } from "lucide-react";
 import { InstagramIcon } from "@/components/site/brand-icons";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
   description:
     "Escríbenos para dar una charla, patrocinar un evento de Young Business Leaders o resolver dudas sobre la comunidad de emprendedores en Jalisco.",
   alternates: { canonical: "/contacto" },
+  openGraph: openGraphFor({ path: "/contacto", title: "Contacto y patrocinios · YBL", description: "Escríbenos para dar una charla, patrocinar un evento de Young Business Leaders o resolver dudas sobre la comunidad de emprendedores en Jalisco." }),
 };
 
 export default function ContactoPage() {

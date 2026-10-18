@@ -1,3 +1,4 @@
+import { openGraphFor } from "@/lib/og/page-metadata";
 import Link from "next/link";
 import { ArrowRight, Lightbulb, Rocket, Sparkles, Users } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
@@ -37,7 +38,14 @@ const PILLARS = [
   },
 ];
 
-export const metadata: Metadata = { alternates: { canonical: "/" } };
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+  openGraph: openGraphFor({
+    path: "/",
+    title: "Young Business Leaders MX | Jóvenes emprendedores en Jalisco",
+    description: "Comunidad de jóvenes emprendedores en Guadalajara y Jalisco: conferencias, talleres, networking y visitas a empresas.",
+  }),
+};
 
 export default function HomePage() {
   return (

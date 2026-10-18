@@ -59,6 +59,10 @@ node scripts/photos-import.mjs <carpeta> <tmp>            # comprime, sube álbu
 
   Acepta JPG, PNG y HEIC (HEIC se convierte con `sips`, solo macOS). El nombre de cada foto subida termina en `-ANCHOxALTO.webp`; la galería lee de ahí las dimensiones para reservar el espacio exacto.
 
+## Tarjetas para compartir
+
+Cada página tiene su imagen Open Graph generada con la plantilla de `src/lib/og/card.tsx` (Plus Jakarta Sans de `assets/fonts`, licencia OFL): páginas fijas en PNG con su título, eventos con nombre, fecha, lugar y portada, y álbumes con su foto de portada. Eventos y álbumes salen en JPEG (~100 KB) para que WhatsApp muestre la vista previa. Para refrescar una tarjeta en caché de Facebook/WhatsApp usa el [Sharing Debugger](https://developers.facebook.com/tools/debug/).
+
 ## Correos
 
 Los correos de Supabase Auth (confirmación, invitación, enlace mágico, cambio de correo, recuperación, reautenticación y avisos de seguridad) usan plantillas con la marca en `supabase/templates/`. Se generan con `node scripts/build-email-templates.mjs` y se suben con:

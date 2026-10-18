@@ -1,3 +1,4 @@
+import { openGraphFor } from "@/lib/og/page-metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalPage } from "@/components/site/legal-page";
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
   title: "Aviso de privacidad",
   description: "Cómo Young Business Leaders MX recaba, usa y protege tus datos personales.",
   alternates: { canonical: "/aviso-de-privacidad" },
+  openGraph: openGraphFor({ path: "/aviso-de-privacidad", title: "Aviso de privacidad · YBL", description: "Cómo Young Business Leaders MX recaba, usa y protege tus datos personales." }),
 };
 
 const mail = <a href={`mailto:${LEGAL.email}`}>{LEGAL.email}</a>;

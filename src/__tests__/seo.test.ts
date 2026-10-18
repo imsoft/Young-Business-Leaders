@@ -24,3 +24,16 @@ describe("datos estructurados", () => {
     expect(organizationJsonLd().logo).toMatch(/^https?:\/\/.+\/brand\/ybl-logo-512\.png$/);
   });
 });
+
+import { openGraphFor } from "@/lib/og/page-metadata";
+
+describe("openGraphFor", () => {
+  it("conserva nombre del sitio e idioma al sobrescribir el openGraph del layout", () => {
+    expect(openGraphFor({ path: "/eventos", title: "Eventos · YBL", description: "d" })).toMatchObject({
+      siteName: "Young Business Leaders MX",
+      locale: "es_MX",
+      url: "/eventos",
+      type: "website",
+    });
+  });
+});

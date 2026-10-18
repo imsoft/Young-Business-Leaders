@@ -1,3 +1,4 @@
+import { openGraphFor } from "@/lib/og/page-metadata";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
   description:
     "Fotos de conferencias, talleres, networking y visitas a empresas de la comunidad Young Business Leaders en Jalisco.",
   alternates: { canonical: "/galeria" },
+  openGraph: openGraphFor({ path: "/galeria", title: "Galería de eventos · YBL", description: "Fotos de conferencias, talleres, networking y visitas a empresas de la comunidad Young Business Leaders en Jalisco." }),
 };
 
 export default async function GaleriaPage() {

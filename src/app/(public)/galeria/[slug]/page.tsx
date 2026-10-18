@@ -11,6 +11,7 @@ import { dimsFromUrl } from "@/lib/media";
 import { Section, SectionHeading } from "@/components/site/section";
 import { getAlbumWithPhotos, getAlbums } from "@/lib/data/public";
 import { formatShortDate } from "@/lib/format";
+import { openGraphFor } from "@/lib/og/page-metadata";
 
 /** Igual que los eventos: los álbumes publicados se prerenderizan con su metadata en el <head>. */
 export async function generateStaticParams() {
@@ -25,13 +26,12 @@ export async function generateMetadata({ params }: PageProps<"/galeria/[slug]">)
   const { album, photos } = data;
   const title = `${album.title} · Galería`;
   const description = `${album.description ? `${album.description} ` : ""}${photos.length} fotos de la comunidad Young Business Leaders en Jalisco.`;
-  const images = [album.cover_url ?? "/opengraph-image"];
   return {
     title,
     description,
     alternates: { canonical: `/galeria/${album.slug}` },
-    openGraph: { type: "website", title, description, url: `/galeria/${album.slug}`, images },
-    twitter: { card: "summary_large_image", title, description, images },
+    openGraph: openGraphFor({ path: `/galeria/${album.slug}`, title: `${title} · YBL`, description }),
+    twitter: { card: "summary_large_image", title: `${title} · YBL`, description },
   };
 }
 

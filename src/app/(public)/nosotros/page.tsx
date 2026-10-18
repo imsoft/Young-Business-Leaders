@@ -1,3 +1,4 @@
+import { openGraphFor } from "@/lib/og/page-metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
   description:
     "Young Business Leaders MX es una comunidad de jóvenes emprendedores en Jalisco. Organizamos conferencias, talleres, networking y visitas a empresas.",
   alternates: { canonical: "/nosotros" },
+  openGraph: openGraphFor({ path: "/nosotros", title: "Quiénes somos · YBL", description: "Young Business Leaders MX es una comunidad de jóvenes emprendedores en Jalisco. Organizamos conferencias, talleres, networking y visitas a empresas." }),
 };
 
 const VALUES = [

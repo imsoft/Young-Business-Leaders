@@ -6,6 +6,7 @@ import { CalendarDays, Clock, MapPin, Users } from "lucide-react";
 import { getEventBySlug, getEventSlugs } from "@/lib/data/public";
 import { JsonLd } from "@/components/seo/json-ld";
 import { eventJsonLd } from "@/lib/seo";
+import { openGraphFor } from "@/lib/og/page-metadata";
 import { getCurrentProfile } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import { createPublicClient } from "@/lib/supabase/public";
@@ -35,13 +36,13 @@ export async function generateMetadata({ params }: PageProps<"/eventos/[slug]">)
   const when = `${formatEventDate(event.starts_at)}, ${formatEventTime(event.starts_at)}`;
   const description =
     event.summary ?? `${event.title}: ${when}${event.location ? ` en ${event.location}` : ""}. Evento de Young Business Leaders MX.`;
-  const images = [event.cover_url ?? "/opengraph-image"];
+  const title = `${event.title} · YBL`;
   return {
     title: event.title,
     description,
     alternates: { canonical: `/eventos/${event.slug}` },
-    openGraph: { type: "website", title: event.title, description, url: `/eventos/${event.slug}`, images },
-    twitter: { card: "summary_large_image", title: event.title, description, images },
+    openGraph: openGraphFor({ path: `/eventos/${event.slug}`, title, description }),
+    twitter: { card: "summary_large_image", title, description },
   };
 }
 

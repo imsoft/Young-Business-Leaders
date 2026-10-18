@@ -1,3 +1,4 @@
+import { openGraphFor } from "@/lib/og/page-metadata";
 import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/site/section";
 import { EventCard } from "@/components/site/event-card";
@@ -10,6 +11,7 @@ export const metadata: Metadata = {
   description:
     "Conferencias, talleres, networking y visitas a empresas para jóvenes emprendedores en Guadalajara y Jalisco. Consulta la agenda y regístrate gratis.",
   alternates: { canonical: "/eventos" },
+  openGraph: openGraphFor({ path: "/eventos", title: "Eventos para emprendedores en Guadalajara · YBL", description: "Conferencias, talleres, networking y visitas a empresas para jóvenes emprendedores en Guadalajara y Jalisco. Consulta la agenda y regístrate gratis." }),
 };
 
 export default async function EventosPage() {

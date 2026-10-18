@@ -1,3 +1,4 @@
+import { openGraphFor } from "@/lib/og/page-metadata";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { LegalPage } from "@/components/site/legal-page";
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
   title: "Términos y condiciones",
   description: "Reglas de uso del sitio y de la comunidad Young Business Leaders MX.",
   alternates: { canonical: "/terminos" },
+  openGraph: openGraphFor({ path: "/terminos", title: "Términos y condiciones · YBL", description: "Reglas de uso del sitio y de la comunidad Young Business Leaders MX." }),
 };
 
 const mail = <a href={`mailto:${LEGAL.email}`}>{LEGAL.email}</a>;
