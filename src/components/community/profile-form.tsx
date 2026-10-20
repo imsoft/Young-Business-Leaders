@@ -51,8 +51,26 @@ export function ProfileForm({ profile }: { profile: Profile }) {
         <Textarea id="bio" name="bio" rows={5} defaultValue={profile.bio ?? ""} maxLength={600} />
       </Field>
       <div className="grid gap-5 sm:grid-cols-3">
-        <Field label="Instagram" htmlFor="instagram" error={e.instagram} hint="Sin @">
-          <Input id="instagram" name="instagram" defaultValue={profile.instagram ?? ""} />
+        <Field label="Instagram" htmlFor="instagram" error={e.instagram}>
+          <div className="relative">
+            <span aria-hidden="true" className="pointer-events-none absolute top-1/2 left-2.5 -translate-y-1/2 text-sm text-muted-foreground">
+              @
+            </span>
+            <Input
+              id="instagram"
+              name="instagram"
+              defaultValue={profile.instagram ?? ""}
+              autoComplete="off"
+              autoCapitalize="none"
+              spellCheck={false}
+              className="pl-6"
+              onChange={(ev) => {
+                // La @ ya está fija a la izquierda: si la escriben o pegan, se quita.
+                const clean = ev.currentTarget.value.replace(/^@+/, "").replace(/\s/g, "");
+                if (clean !== ev.currentTarget.value) ev.currentTarget.value = clean;
+              }}
+            />
+          </div>
         </Field>
         <Field label="LinkedIn" htmlFor="linkedin" error={e.linkedin}>
           <Input id="linkedin" name="linkedin" type="url" placeholder="https://" defaultValue={profile.linkedin ?? ""} />
