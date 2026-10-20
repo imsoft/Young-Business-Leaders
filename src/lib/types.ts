@@ -79,6 +79,24 @@ export type Sponsor = {
   created_at: string;
 };
 
+export type VentureRole = "fundador" | "cofundador" | "socio" | "equipo" | "inversionista";
+export type VentureStage = "idea" | "validando" | "operando" | "creciendo";
+
+export type MemberVenture = {
+  id: string;
+  profile_id: string;
+  name: string;
+  tagline: string | null;
+  role: VentureRole | null;
+  stage: VentureStage | null;
+  industry: string | null;
+  website: string | null;
+  logo_url: string | null;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+};
+
 export type ContactMessage = {
   id: string;
   name: string;
@@ -103,6 +121,7 @@ export type Database = {
       gallery_albums: Table<GalleryAlbum, "slug" | "title", "id" | "created_at">;
       gallery_photos: Table<GalleryPhoto, "album_id" | "url", "id" | "created_at">;
       sponsors: Table<Sponsor, "name", "id" | "created_at">;
+      member_ventures: Table<MemberVenture, "profile_id" | "name", "id" | "created_at" | "updated_at">;
       contact_messages: Table<ContactMessage, "name" | "email" | "message", "id" | "created_at">;
     };
     Views: Record<string, never>;

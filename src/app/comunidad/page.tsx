@@ -1,3 +1,4 @@
+import { getVentures, profileIdsByVentureIndustry } from "@/lib/data/ventures";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { requireMember } from "@/lib/auth";
@@ -41,20 +42,29 @@ async function Members({ searchParams }: { searchParams: PageProps<"/comunidad">
     .eq("status", "approved")
     .order("full_name", { ascending: true })
     .limit(200);
-  if (industria) query = query.eq("industry", industria);
+  if (industria) {
+    // La industria del miembro o la de cualquiera de sus emprendimientos
+    const ids = await profileIdsByVentureIndustry(industria);
+    query = ids.length
+      ? query.or(`industry.eq."${industria}",id.in.(${ids.join(",")})`)
+      : query.eq("industry", industria);
+  }
   if (q) {
     const like = `%${q}%`;
     query = query.or(`full_name.ilike.${like},company.ilike.${like},city.ilike.${like},headline.ilike.${like}`);
   }
   const { data } = await query;
   const members = data ?? [];
+  const ventures = await getVentures(members.map((m) => m.id));
+  const ventureCount = new Map<string, number>();
+  for (const v of ventures) ventureCount.set(v.profile_id, (ventureCount.get(v.profile_id) ?? 0) + 1);
   if (members.length === 0) {
     return <p className="rounded-2xl border border-dashed p-10 text-center text-muted-foreground">No encontramos miembros con esos filtros.</p>;
   }
   return (
     <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {members.map((m) => (
-        <StaggerItem key={m.id}><MemberCard member={m} /></StaggerItem>
+        <StaggerItem key={m.id}><MemberCard member={m} ventures={ventureCount.get(m.id) ?? 0} /></StaggerItem>
       ))}
     </Stagger>
   );

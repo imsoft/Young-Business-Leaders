@@ -1,3 +1,5 @@
+import { VenturesManager } from "@/components/community/ventures-manager";
+import { getVentures } from "@/lib/data/ventures";
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { requireProfile } from "@/lib/auth";
@@ -21,6 +23,7 @@ export default function PerfilPage({ searchParams }: PageProps<"/comunidad/perfi
 
 async function Body({ searchParams }: { searchParams: PageProps<"/comunidad/perfil">["searchParams"] }) {
   const [profile, sp] = await Promise.all([requireProfile("/comunidad/perfil"), searchParams]);
+  const ventures = await getVentures([profile.id]);
   return (
     <div className="grid gap-6">
       {sp.password ? (
@@ -45,6 +48,13 @@ async function Body({ searchParams }: { searchParams: PageProps<"/comunidad/perf
       <div className="rounded-3xl border bg-card p-6 shadow-sm md:p-8">
         <ProfileForm profile={profile} />
       </div>
+      <section aria-labelledby="mis-emprendimientos" className="rounded-3xl border bg-card p-6 shadow-sm md:p-8">
+        <h2 id="mis-emprendimientos" className="font-heading text-xl font-extrabold">Mis emprendimientos</h2>
+        <p className="mt-1 mb-5 text-sm text-muted-foreground">
+          Agrega todos los proyectos en los que participas. El principal aparece en tu tarjeta del directorio.
+        </p>
+        <VenturesManager ventures={ventures} />
+      </section>
     </div>
   );
 }

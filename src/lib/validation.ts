@@ -5,7 +5,8 @@ const optionalUrl = z
   .trim()
   .optional()
   .transform((v) => (v ? v : null))
-  .pipe(z.url("Debe ser una URL válida").nullable());
+  // z.url() acepta cualquier esquema (javascript:, data:…): solo permitimos http(s).
+  .pipe(z.url({ protocol: /^https?$/, error: "Debe ser un enlace que empiece con https://" }).nullable());
 
 const optionalText = (max: number) =>
   z
@@ -26,11 +27,24 @@ export const profileSchema = z.object({
   full_name: z.string().trim().min(2, "Escribe tu nombre").max(80),
   headline: optionalText(100),
   bio: optionalText(600),
-  company: optionalText(80),
   industry: optionalText(60),
   city: optionalText(60),
   instagram: handleSchema,
   linkedin: optionalUrl,
+  website: optionalUrl,
+});
+
+const emptyToNull = z
+  .string()
+  .optional()
+  .transform((v) => (v ? v : null));
+
+export const ventureSchema = z.object({
+  name: z.string().trim().min(1, "Escribe el nombre").max(80),
+  tagline: optionalText(140),
+  role: emptyToNull.pipe(z.enum(["fundador", "cofundador", "socio", "equipo", "inversionista"]).nullable()),
+  stage: emptyToNull.pipe(z.enum(["idea", "validando", "operando", "creciendo"]).nullable()),
+  industry: optionalText(60),
   website: optionalUrl,
 });
 

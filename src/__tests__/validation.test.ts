@@ -69,3 +69,31 @@ describe("formBool", () => {
     expect(formBool("off")).toBe(false);
   });
 });
+
+import { ventureSchema } from "@/lib/validation";
+
+describe("ventureSchema", () => {
+  it("acepta un emprendimiento mínimo y convierte vacíos a null", () => {
+    const v = ventureSchema.parse({ name: "Café Origen", tagline: "", role: "", stage: "", industry: "", website: "" });
+    expect(v).toEqual({ name: "Café Origen", tagline: null, role: null, stage: null, industry: null, website: null });
+  });
+  it("valida rol, etapa y URL", () => {
+    expect(ventureSchema.safeParse({ name: "X", role: "ceo" }).success).toBe(false);
+    expect(ventureSchema.safeParse({ name: "X", stage: "unicornio" }).success).toBe(false);
+    expect(ventureSchema.safeParse({ name: "X", website: "javascript:alert(1)" }).success).toBe(false);
+    expect(ventureSchema.safeParse({ name: "X", role: "cofundador", stage: "operando", website: "https://cafeorigen.mx" }).success).toBe(true);
+  });
+  it("exige nombre", () => {
+    expect(ventureSchema.safeParse({ name: "   " }).success).toBe(false);
+  });
+});
+
+describe("URLs de perfil", () => {
+  it.each(["javascript:alert(1)", "data:text/html,<b>x</b>", "ftp://x.com", "vbscript:msgbox(1)"])("rechaza %s", (url) => {
+    expect(profileSchema.safeParse({ full_name: "Ana", website: url }).success).toBe(false);
+    expect(profileSchema.safeParse({ full_name: "Ana", linkedin: url }).success).toBe(false);
+  });
+  it("acepta http y https", () => {
+    expect(profileSchema.safeParse({ full_name: "Ana", website: "https://ana.mx", linkedin: "http://linkedin.com/in/ana" }).success).toBe(true);
+  });
+});

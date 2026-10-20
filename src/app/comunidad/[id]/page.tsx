@@ -1,8 +1,10 @@
+import { VentureCard } from "@/components/community/venture-card";
+import { getVentures } from "@/lib/data/ventures";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
-import { ArrowLeft, Building2, Globe, MapPin } from "lucide-react";
+import { ArrowLeft, Globe, MapPin } from "lucide-react";
 import { InstagramIcon, LinkedinIcon } from "@/components/site/brand-icons";
 import { PROFILE_COLUMNS, requireMember } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
@@ -27,6 +29,7 @@ async function Body({ params }: { params: PageProps<"/comunidad/[id]">["params"]
   const supabase = await createClient();
   const { data: m } = await supabase.from("profiles").select(PROFILE_COLUMNS).eq("id", id).maybeSingle();
   if (!m) notFound();
+  const ventures = await getVentures([m.id]);
 
   const links = [
     m.instagram ? { icon: InstagramIcon, label: `@${m.instagram}`, href: `https://instagram.com/${m.instagram}` } : null,
@@ -49,13 +52,24 @@ async function Body({ params }: { params: PageProps<"/comunidad/[id]">["params"]
             <h1 className="font-heading text-3xl font-extrabold">{m.full_name}</h1>
             {m.headline ? <p className="mt-1 text-lg text-muted-foreground">{m.headline}</p> : null}
             <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
-              {m.company ? <span className="inline-flex items-center gap-1"><Building2 className="size-4" />{m.company}</span> : null}
               {m.city ? <span className="inline-flex items-center gap-1"><MapPin className="size-4" />{m.city}</span> : null}
             </div>
             {m.industry ? <Badge variant="secondary" className="mt-3">{m.industry}</Badge> : null}
           </div>
         </div>
         {m.bio ? <p className="mt-8 whitespace-pre-line text-foreground/90">{m.bio}</p> : null}
+        {ventures.length > 0 ? (
+          <section aria-labelledby="emprendimientos" className="mt-10">
+            <h2 id="emprendimientos" className="font-heading mb-4 text-lg font-extrabold">
+              Emprendimientos <span className="text-sm font-medium text-muted-foreground">{ventures.length}</span>
+            </h2>
+            <div className="grid gap-3">
+              {ventures.map((v, i) => (
+                <VentureCard key={v.id} venture={v} primary={i === 0 && ventures.length > 1} />
+              ))}
+            </div>
+          </section>
+        ) : null}
         {links.length > 0 ? (
           <ul className="mt-8 flex flex-wrap gap-2">
             {links.map((l) => (

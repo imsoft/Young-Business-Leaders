@@ -46,8 +46,9 @@ export default function AvisoDePrivacidadPage() {
                   equipo puede verla. Si entras con Google, recibimos tu nombre, correo y foto de perfil de Google.
                 </li>
                 <li>
-                  <strong>Perfil de miembro (opcional):</strong> foto, titular, descripción, empresa o proyecto, industria,
-                  ciudad, usuario de Instagram, LinkedIn y sitio web. Tú decides qué llenar.
+                  <strong>Perfil de miembro (opcional):</strong> foto, a qué te dedicas, descripción, industria, ciudad,
+                  usuario de Instagram, LinkedIn y sitio personal, y tus emprendimientos (nombre, logo, qué hace, tu rol,
+                  etapa, industria y sitio web). Tú decides qué llenar.
                 </li>
                 <li>
                   <strong>Registro a eventos:</strong> si eres miembro, el evento queda ligado a tu cuenta. Si te registras sin

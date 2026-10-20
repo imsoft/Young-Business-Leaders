@@ -38,10 +38,7 @@ export function ProfileForm({ profile }: { profile: Profile }) {
         />
       </Field>
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Empresa o proyecto" htmlFor="company" error={e.company}>
-          <Input id="company" name="company" defaultValue={profile.company ?? ""} />
-        </Field>
-        <Field label="Industria" htmlFor="industry" error={e.industry}>
+        <Field label="Tu industria" htmlFor="industry" error={e.industry}>
           <NativeSelect id="industry" name="industry" defaultValue={profile.industry ?? ""}>
             <option value="">Selecciona</option>
             {INDUSTRIES.map((i) => (
@@ -49,11 +46,11 @@ export function ProfileForm({ profile }: { profile: Profile }) {
             ))}
           </NativeSelect>
         </Field>
+        <Field label="Ciudad" htmlFor="city" error={e.city}>
+          <Input id="city" name="city" defaultValue={profile.city ?? ""} />
+        </Field>
       </div>
-      <Field label="Ciudad" htmlFor="city" error={e.city}>
-        <Input id="city" name="city" defaultValue={profile.city ?? ""} />
-      </Field>
-      <Field label="Sobre ti y tu proyecto" htmlFor="bio" error={e.bio} hint="Qué haces, en qué etapa estás y qué buscas en la comunidad.">
+      <Field label="Sobre ti" htmlFor="bio" error={e.bio} hint="Quién eres, qué te mueve y qué buscas en la comunidad. Tus emprendimientos van en su propia sección.">
         <Textarea id="bio" name="bio" rows={5} defaultValue={profile.bio ?? ""} maxLength={600} />
       </Field>
       <div className="grid gap-5 sm:grid-cols-3">
@@ -81,7 +78,7 @@ export function ProfileForm({ profile }: { profile: Profile }) {
         <Field label="LinkedIn" htmlFor="linkedin" error={e.linkedin}>
           <Input id="linkedin" name="linkedin" type="url" placeholder="https://" defaultValue={profile.linkedin ?? ""} />
         </Field>
-        <Field label="Sitio web" htmlFor="website" error={e.website}>
+        <Field label="Sitio personal" htmlFor="website" error={e.website}>
           <Input id="website" name="website" type="url" placeholder="https://" defaultValue={profile.website ?? ""} />
         </Field>
       </div>

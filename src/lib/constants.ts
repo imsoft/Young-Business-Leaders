@@ -22,6 +22,23 @@ export const INDUSTRIES = [
   "Otro",
 ] as const;
 
+export const VENTURE_ROLES = [
+  { value: "fundador", label: "Fundador(a)" },
+  { value: "cofundador", label: "Cofundador(a)" },
+  { value: "socio", label: "Socio(a)" },
+  { value: "equipo", label: "Parte del equipo" },
+  { value: "inversionista", label: "Inversionista" },
+] as const;
+
+export const VENTURE_STAGES = [
+  { value: "idea", label: "Idea" },
+  { value: "validando", label: "Validando" },
+  { value: "operando", label: "En operación" },
+  { value: "creciendo", label: "Creciendo" },
+] as const;
+
+export const MAX_VENTURES = 10;
+
 export const SPONSOR_TIERS = ["fundador", "patrocinador", "aliado"] as const;
 
 /** Datos del responsable para el aviso de privacidad y los términos. */
@@ -30,5 +47,5 @@ export const LEGAL = {
   short: "YBL",
   location: "Guadalajara, Jalisco, México",
   email: CONTACT_EMAIL,
-  updated: "17 de octubre de 2026",
+  updated: "20 de octubre de 2026",
 } as const;
