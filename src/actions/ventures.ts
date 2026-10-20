@@ -10,8 +10,6 @@ import { MAX_VENTURES } from "@/lib/constants";
 export type VentureState = { errors?: FieldErrors; message?: string; ok?: boolean } | undefined;
 
 const MAX_LOGO_BYTES = 3 * 1024 * 1024;
-const CONTACT_COLUMNS = ["contact_phone", "contact_whatsapp", "contact_email", "instagram", "facebook", "linkedin", "tiktok"] as const;
-type ContactKey = (typeof CONTACT_COLUMNS)[number];
 // Tabla o columnas aún no creadas (migración pendiente)
 const MISSING_TABLE = new Set(["42P01", "PGRST205", "PGRST204"]);
 
@@ -19,6 +17,7 @@ function refresh(profileId: string) {
   revalidatePath("/comunidad/perfil");
   revalidatePath(`/comunidad/${profileId}`);
   revalidatePath("/comunidad");
+  revalidatePath("/comunidad/emprendimientos", "layout");
 }
 
 /** Crea o edita un emprendimiento propio. RLS garantiza que solo se toquen los del usuario. */
@@ -51,7 +50,7 @@ export async function saveVenture(_: VentureState, formData: FormData): Promise<
   };
 
   // Si la migración de contacto (20261021) aún no corre, se guarda sin esas columnas.
-  const write = async (data: typeof payload | Omit<typeof payload, ContactKey>) => {
+  const write = async (data: typeof payload) => {
     if (isEdit) return supabase.from("member_ventures").update(data).eq("id", id).eq("profile_id", profile.id);
     return supabase.from("member_ventures").insert({ ...data, profile_id: profile.id, sort_order: count ?? 0 });
   };
@@ -60,10 +59,15 @@ export async function saveVenture(_: VentureState, formData: FormData): Promise<
     ({ count } = await supabase.from("member_ventures").select("id", { count: "exact", head: true }).eq("profile_id", profile.id));
     if ((count ?? 0) >= MAX_VENTURES) return { message: `Puedes registrar hasta ${MAX_VENTURES} emprendimientos.` };
   }
-  let { error } = await write(payload);
-  if (error?.code === "PGRST204") {
-    const withoutContact = Object.fromEntries(Object.entries(payload).filter(([k]) => !CONTACT_COLUMNS.includes(k as ContactKey)));
-    ({ error } = await write(withoutContact as Omit<typeof payload, ContactKey>));
+  // Si una migración (contacto, descripción) aún no corre, PostgREST avisa qué columna falta:
+  // se quita esa columna y se reintenta, para no perder el resto del guardado.
+  let data: Record<string, unknown> = payload;
+  let { error } = await write(data as typeof payload);
+  for (let i = 0; i < 10 && error?.code === "PGRST204"; i++) {
+    const missing = /'([a-z_]+)' column/.exec(error.message)?.[1];
+    if (!missing || !(missing in data)) break;
+    data = Object.fromEntries(Object.entries(data).filter(([k]) => k !== missing));
+    ({ error } = await write(data as typeof payload));
   }
   if (error) return { message: MISSING_TABLE.has(error.code) ? "Esta función aún no está activa." : "No se pudo guardar." };
   refresh(profile.id);

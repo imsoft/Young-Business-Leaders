@@ -5,6 +5,7 @@ import { Plus, Star } from "lucide-react";
 import { deleteVenture, makePrimaryVenture, saveVenture, type VentureState } from "@/actions/ventures";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Field, FormMessage, NativeSelect } from "@/components/forms/field";
 import { SubmitButton } from "@/components/forms/submit-button";
 import { DeleteButton } from "@/components/admin/delete-button";
@@ -83,6 +84,9 @@ function VentureForm({ venture, onDone, cancelable = true }: { venture?: MemberV
       </div>
       <Field label="¿Qué hace?" htmlFor={`v-tagline-${key}`} error={e.tagline} hint="Una línea, como se lo dirías a alguien en un evento.">
         <Input id={`v-tagline-${key}`} name="tagline" defaultValue={venture?.tagline ?? ""} maxLength={140} placeholder="Ej. Café de especialidad de productores de Jalisco" />
+      </Field>
+      <Field label="Cuéntanos más" htmlFor={`v-desc-${key}`} error={e.description} hint="Qué problema resuelve, a quién le vende y qué busca (socios, clientes, inversión). Máximo 1,000 caracteres.">
+        <Textarea id={`v-desc-${key}`} name="description" rows={4} maxLength={1000} defaultValue={venture?.description ?? ""} />
       </Field>
       <div className="grid gap-4 sm:grid-cols-3">
         <Field label="Etapa" htmlFor={`v-stage-${key}`} error={e.stage}>

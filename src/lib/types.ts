@@ -87,6 +87,7 @@ export type MemberVenture = {
   profile_id: string;
   name: string;
   tagline: string | null;
+  description: string | null;
   role: VentureRole | null;
   stage: VentureStage | null;
   industry: string | null;

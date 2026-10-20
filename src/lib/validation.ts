@@ -80,6 +80,7 @@ const domainUrlField = (domain: RegExp, label: string) =>
 export const ventureSchema = z.object({
   name: z.string().trim().min(1, "Escribe el nombre").max(80),
   tagline: optionalText(140),
+  description: optionalText(1000),
   role: emptyToNull.pipe(z.enum(["fundador", "cofundador", "socio", "equipo", "inversionista"]).nullable()),
   stage: emptyToNull.pipe(z.enum(["idea", "validando", "operando", "creciendo"]).nullable()),
   industry: optionalText(60),

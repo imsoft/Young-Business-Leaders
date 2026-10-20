@@ -76,7 +76,7 @@ describe("ventureSchema", () => {
   it("acepta un emprendimiento mínimo y convierte vacíos a null", () => {
     const v = ventureSchema.parse({ name: "Café Origen", tagline: "", role: "", stage: "", industry: "", website: "" });
     expect(v).toEqual({
-      name: "Café Origen", tagline: null, role: null, stage: null, industry: null, website: null,
+      name: "Café Origen", tagline: null, description: null, role: null, stage: null, industry: null, website: null,
       contact_phone: null, contact_whatsapp: false, contact_email: null, instagram: null, tiktok: null, facebook: null, linkedin: null,
     });
   });
@@ -137,5 +137,12 @@ describe("contacto del emprendimiento", () => {
   it("arma el enlace de WhatsApp con lada de México", () => {
     expect(whatsappLink("33 1234 5678")).toBe("https://wa.me/523312345678");
     expect(whatsappLink("+52 1 33 1234 5678")).toBe("https://wa.me/5213312345678");
+  });
+});
+
+describe("descripción del emprendimiento", () => {
+  it("acepta hasta 1000 caracteres", () => {
+    expect(ventureSchema.parse({ name: "X", description: "  Resolvemos X para Y.  " }).description).toBe("Resolvemos X para Y.");
+    expect(ventureSchema.safeParse({ name: "X", description: "a".repeat(1001) }).success).toBe(false);
   });
 });

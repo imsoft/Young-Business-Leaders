@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Globe, Mail, MessageCircle, Phone } from "lucide-react";
 import { FacebookIcon, InstagramIcon, LinkedinIcon, TikTokIcon } from "@/components/site/brand-icons";
 import { whatsappLink } from "@/lib/validation";
@@ -23,7 +24,7 @@ export function VentureLogo({ venture, className }: { venture: Pick<MemberVentur
   );
 }
 
-export function VentureCard({ venture, primary = false, children }: { venture: MemberVenture; primary?: boolean; children?: React.ReactNode }) {
+export function VentureCard({ venture, primary = false, link = true, children }: { venture: MemberVenture; primary?: boolean; link?: boolean; children?: React.ReactNode }) {
   const role = roleLabel(venture.role);
   const stage = stageLabel(venture.stage);
   return (
@@ -31,7 +32,15 @@ export function VentureCard({ venture, primary = false, children }: { venture: M
       <VentureLogo venture={venture} />
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">
-          <h3 className="font-heading font-bold">{venture.name}</h3>
+          <h3 className="font-heading font-bold">
+            {link ? (
+              <Link href={`/comunidad/emprendimientos/${venture.id}`} className="hover:text-gold-deep hover:underline">
+                {venture.name}
+              </Link>
+            ) : (
+              venture.name
+            )}
+          </h3>
           {primary ? <Badge className="bg-gold text-ink">Principal</Badge> : null}
         </div>
         {venture.tagline ? <p className="mt-0.5 text-sm text-muted-foreground">{venture.tagline}</p> : null}
@@ -52,7 +61,7 @@ export function VentureCard({ venture, primary = false, children }: { venture: M
   );
 }
 
-function VentureContact({ venture: v }: { venture: MemberVenture }) {
+export function VentureContact({ venture: v, large = false }: { venture: MemberVenture; large?: boolean }) {
   const links = [
     v.contact_phone ? { href: `tel:${v.contact_phone.replace(/[^\d+]/g, "")}`, label: v.contact_phone, icon: Phone, external: false } : null,
     v.contact_phone && v.contact_whatsapp ? { href: whatsappLink(v.contact_phone), label: "WhatsApp", icon: MessageCircle, external: true } : null,
@@ -64,13 +73,16 @@ function VentureContact({ venture: v }: { venture: MemberVenture }) {
   ].filter((l): l is NonNullable<typeof l> => Boolean(l));
   if (links.length === 0) return null;
   return (
-    <ul className="mt-3 flex flex-wrap gap-1.5">
+    <ul className={cn("flex flex-wrap", large ? "gap-2" : "mt-3 gap-1.5")}>
       {links.map((l) => (
         <li key={l.href}>
           <a
             href={l.href}
             {...(l.external ? { target: "_blank", rel: "noreferrer" } : {})}
-            className="inline-flex max-w-full items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium transition hover:border-gold hover:text-gold-deep"
+            className={cn(
+              "inline-flex max-w-full items-center gap-1.5 rounded-full border font-medium transition hover:border-gold hover:text-gold-deep",
+              large ? "bg-card px-3.5 py-2 text-sm" : "px-2.5 py-1 text-xs",
+            )}
           >
             <l.icon className="size-3.5 shrink-0 text-gold-deep" />
             <span className="truncate">{l.label}</span>
