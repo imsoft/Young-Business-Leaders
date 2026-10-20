@@ -97,3 +97,12 @@ describe("URLs de perfil", () => {
     expect(profileSchema.safeParse({ full_name: "Ana", website: "https://ana.mx", linkedin: "http://linkedin.com/in/ana" }).success).toBe(true);
   });
 });
+
+import { isPlatformDeveloper } from "@/components/community/developer-badge";
+
+describe("badge de desarrollador", () => {
+  it("solo aplica al perfil del desarrollador", () => {
+    expect(isPlatformDeveloper("d5567511-2179-474e-8937-666402ae131b")).toBe(true);
+    expect(isPlatformDeveloper("00000000-0000-0000-0000-000000000000")).toBe(false);
+  });
+});

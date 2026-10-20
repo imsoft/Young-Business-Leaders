@@ -15,6 +15,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { CalendarDays, LogOut, Pencil, ShieldCheck, UserRoundPen, Users, X } from "lucide-react";
 import { initials } from "@/lib/format";
+import { DeveloperBadge } from "@/components/community/developer-badge";
 import { cn } from "@/lib/utils";
 
 /** Lee la sesión, así que siempre va dentro de Suspense. */
@@ -75,6 +76,7 @@ async function UserMenuInner() {
                 >
                   {role}
                 </span>
+                <DeveloperBadge profileId={profile.id} compact className="mt-1.5 ml-1" />
               </div>
             </div>
           </DropdownMenuLabel>

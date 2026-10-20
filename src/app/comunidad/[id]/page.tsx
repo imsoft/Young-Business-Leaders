@@ -1,3 +1,4 @@
+import { DeveloperBadge } from "@/components/community/developer-badge";
 import { VentureCard } from "@/components/community/venture-card";
 import { getVentures } from "@/lib/data/ventures";
 import type { Metadata } from "next";
@@ -49,7 +50,10 @@ async function Body({ params }: { params: PageProps<"/comunidad/[id]">["params"]
             <AvatarFallback className="text-3xl">{initials(m.full_name)}</AvatarFallback>
           </Avatar>
           <div className="min-w-0 flex-1">
-            <h1 className="font-heading text-3xl font-extrabold">{m.full_name}</h1>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+              <h1 className="font-heading text-3xl font-extrabold">{m.full_name}</h1>
+              <DeveloperBadge profileId={m.id} />
+            </div>
             {m.headline ? <p className="mt-1 text-lg text-muted-foreground">{m.headline}</p> : null}
             <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
               {m.city ? <span className="inline-flex items-center gap-1"><MapPin className="size-4" />{m.city}</span> : null}

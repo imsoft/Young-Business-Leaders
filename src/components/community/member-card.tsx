@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { DeveloperBadge } from "@/components/community/developer-badge";
 import { initials } from "@/lib/format";
 import type { Profile } from "@/lib/types";
 
@@ -18,7 +19,10 @@ export function MemberCard({
         <AvatarFallback className="text-base">{initials(member.full_name)}</AvatarFallback>
       </Avatar>
       <div className="min-w-0">
-        <h3 className="font-heading truncate font-bold">{member.full_name}</h3>
+        <div className="flex min-w-0 items-center gap-1.5">
+          <h3 className="font-heading truncate font-bold">{member.full_name}</h3>
+          <DeveloperBadge profileId={member.id} compact />
+        </div>
         {member.headline ? <p className="truncate text-sm text-muted-foreground">{member.headline}</p> : null}
         {member.company ? (
           <p className="truncate text-sm">
