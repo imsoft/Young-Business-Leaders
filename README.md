@@ -59,6 +59,15 @@ node scripts/photos-import.mjs <carpeta> <tmp>            # comprime, sube álbu
 
   Acepta JPG, PNG y HEIC (HEIC se convierte con `sips`, solo macOS). El nombre de cada foto subida termina en `-ANCHOxALTO.webp`; la galería lee de ahí las dimensiones para reservar el espacio exacto.
 
+## Logo
+
+Logo oficial en `assets/brand/ybl-logo-source.json`: trazos extraídos del PDF original y el símbolo reconstruido como un solo contorno (el original usaba formas blancas encimadas que se notan sobre fondos de color). Dorado `#F7A500` y beige `#E2D6C0`.
+
+```sh
+node scripts/build-brand-assets.mjs   # SVG: símbolo, logo apilado, horizontal (texto negro y blanco) e icon.svg
+node scripts/generate-icons.mjs       # favicon.ico, apple-icon, íconos del manifest y PNG para correos
+```
+
 ## Tarjetas para compartir
 
 Cada página tiene su imagen Open Graph generada con la plantilla de `src/lib/og/card.tsx` (Plus Jakarta Sans de `assets/fonts`, licencia OFL): páginas fijas en PNG con su título, eventos con nombre, fecha, lugar y portada, y álbumes con su foto de portada. Eventos y álbumes salen en JPEG (~100 KB) para que WhatsApp muestre la vista previa. Para refrescar una tarjeta en caché de Facebook/WhatsApp usa el [Sharing Debugger](https://developers.facebook.com/tools/debug/).
@@ -82,5 +91,4 @@ pnpm dev · pnpm build · pnpm lint · pnpm typecheck · pnpm test
 ## Pendientes de contenido
 
 - Número de WhatsApp y correo reales en `src/lib/constants.ts`.
-- Logo oficial en `public/brand/` (hoy es un trazo aproximado).
 - El evento "Reunión mensual de miembros" es un ejemplo: edítalo o bórralo desde `/admin/eventos`.

@@ -3,10 +3,10 @@
 // Variables de Supabase (Go templates): {{ .SiteURL }}, {{ .TokenHash }}, {{ .Token }}, {{ .Email }}, {{ .NewEmail }}, {{ .Data.full_name }}
 import { mkdirSync, writeFileSync } from "node:fs";
 
-const C = { gold: "#E9A23B", goldDeep: "#C9801F", ink: "#1A1714", text: "#4A443C", muted: "#8A8276", cream: "#FBF5EA", line: "#EFE6D6" };
+const C = { gold: "#F7A500", goldDeep: "#D98C00", ink: "#1A1714", text: "#4A443C", muted: "#8A8276", cream: "#FBF5EA", line: "#EFE6D6" };
 const FONT = "'Plus Jakarta Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif";
 const SITE = "{{ .SiteURL }}";
-const LOGO = "https://yblmx.org/brand/ybl-logo-512.png";
+const LOGO = "https://yblmx.org/brand/ybl-logo-horizontal.png";
 const HELLO = `Hola{{ if .Data.full_name }} {{ .Data.full_name }}{{ end }},`;
 
 const confirmUrl = (type, next) => `${SITE}/auth/confirm?token_hash={{ .TokenHash }}&type=${type}&next=${next}`;
@@ -45,16 +45,10 @@ function layout({ preheader, title, body, footnote }) {
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${C.cream}">
   <tr><td align="center" style="padding:32px 16px">
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:560px">
-      <tr><td style="background:${C.gold};border-radius:20px 20px 0 0;padding:28px 32px">
-        <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
-          <td style="vertical-align:middle"><img src="${LOGO}" width="44" height="44" alt="YBL" style="display:block;border-radius:22px;border:0"></td>
-          <td style="vertical-align:middle;padding-left:12px;font-family:${FONT};line-height:16px">
-            <div style="font-size:14px;font-weight:800;letter-spacing:1px;color:${C.ink}">YOUNG BUSINESS LEADERS</div>
-            <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:${C.ink};opacity:.7">JÓVENES EMPRENDEDORES · JALISCO</div>
-          </td>
-        </tr></table>
+      <tr><td style="background:#ffffff;border-radius:20px 20px 0 0;padding:28px 32px 24px;border-bottom:6px solid ${C.gold}">
+        <img src="${LOGO}" width="238" height="32" alt="Young Business Leaders by CCJEJ" style="display:block;border:0;height:32px;width:238px">
       </td></tr>
-      <tr><td style="background:#ffffff;padding:36px 32px 32px;border-radius:0 0 20px 20px">
+      <tr><td style="background:#ffffff;padding:32px 32px 32px;border-radius:0 0 20px 20px">
         <h1 style="margin:0 0 18px;font-family:${FONT};font-size:26px;line-height:32px;font-weight:800;color:${C.ink}">${title}</h1>
         ${body}
         ${footnote ? `<p style="margin:28px 0 0;padding-top:20px;border-top:1px solid ${C.line};font-family:${FONT};font-size:13px;line-height:20px;color:${C.muted}">${footnote}</p>` : ""}

@@ -34,4 +34,8 @@ writeFileSync("src/app/favicon.ico", await ico([16, 32, 48]));
 writeFileSync("src/app/apple-icon.png", await onWhite(180, 0.08));
 writeFileSync("public/brand/ybl-logo-512.png", await onWhite(512, 0.06));
 writeFileSync("public/brand/icon-192.png", await onWhite(192, 0.08));
+// PNG del logo oficial (los correos no muestran SVG)
+const raster = (file, height) => sharp(readFileSync(file), { density: 1200 }).resize({ height }).png({ compressionLevel: 9 }).toBuffer();
+writeFileSync("public/brand/ybl-logo-horizontal.png", await raster("public/brand/ybl-logo-horizontal.svg", 96));
+writeFileSync("public/brand/ybl-logo.png", await raster("public/brand/ybl-logo.svg", 820));
 console.log("íconos generados");

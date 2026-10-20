@@ -18,7 +18,7 @@ async function asJpeg(png: ImageResponse) {
   });
 }
 
-const C = { gold: "#E9A23B", goldLight: "#F2B65A", goldDeep: "#D2861F", ink: "#1A1714", white: "#ffffff" };
+const C = { gold: "#F7A500", goldLight: "#FFBE3D", goldDeep: "#D98C00", beige: "#E2D6C0", ink: "#1A1714", white: "#ffffff" };
 
 let fontsPromise: Promise<{ name: string; data: Buffer; weight: 500 | 700 | 800; style: "normal" }[]> | null = null;
 function fonts() {
@@ -49,28 +49,41 @@ async function asJpegDataUrl(url: string | null, width: number, height: number) 
   }
 }
 
-function Mark({ size, color = C.gold }: { size: number; color?: string }) {
+function Mark({ size, color = C.gold, dot = C.beige }: { size: number; color?: string; dot?: string }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" fill="none" stroke={color} strokeWidth={6} strokeLinecap="round" strokeLinejoin="round">
-      <path d="M16 12h26a9 9 0 0 1 0 18H26" />
-      <path d="M26 30h16a11 11 0 0 1 0 22H16" />
+    <svg width={Math.round((size * 80) / 120)} height={size} viewBox="0 0 80 120">
+      <path fill={color} d="M0 0H80V40.04L60.06 59.99L80 79.93V120H0V97.07L10 87.07V110H70V84.07L50.93 65H28.33L23.37 60.04L28.41 55H50.9L70 35.9V10H10V32.8L0 22.8Z" />
+      <circle cx="40" cy="31" r="10" fill={dot} />
     </svg>
   );
 }
 
-function Brand({ dark = false }: { dark?: boolean }) {
+let logosPromise: Promise<{ light: string; dark: string }> | null = null;
+/** Lockup oficial horizontal como data URL (texto negro y texto blanco). */
+function logos() {
+  logosPromise ??= Promise.all(
+    ["ybl-logo-horizontal.svg", "ybl-logo-horizontal-white.svg"].map(
+      async (f) => `data:image/svg+xml;base64,${(await readFile(join(process.cwd(), "public/brand", f))).toString("base64")}`,
+    ),
+  ).then(([light, dark]) => ({ light, dark }));
+  return logosPromise;
+}
+
+/** Logo oficial. Sobre dorado va en una pastilla blanca: el "YOUNG" dorado se perdería en el fondo. */
+function Brand({ src, onDark = false }: { src: string; onDark?: boolean }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-      <div style={{ display: "flex", width: 64, height: 64, borderRadius: 64, background: C.white, alignItems: "center", justifyContent: "center", boxShadow: "0 6px 18px rgba(0,0,0,0.15)" }}>
-        <Mark size={40} />
-      </div>
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ display: "flex", fontSize: 24, fontWeight: 800, letterSpacing: 1, color: dark ? C.white : C.ink }}>
-          <span style={{ color: dark ? C.goldLight : C.white, marginRight: 8 }}>YOUNG</span>BUSINESS LEADERS
-        </div>
-        <div style={{ fontSize: 15, fontWeight: 700, letterSpacing: 4, color: dark ? "rgba(255,255,255,0.7)" : "rgba(26,23,20,0.65)" }}>
-          JÓVENES EMPRENDEDORES · JALISCO
-        </div>
+    <div style={{ display: "flex" }}>
+      <div
+        style={{
+          display: "flex",
+          padding: onDark ? 0 : "14px 22px",
+          borderRadius: 18,
+          background: onDark ? "transparent" : C.white,
+          boxShadow: onDark ? "none" : "0 8px 24px rgba(0,0,0,0.12)",
+        }}
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={src} width={356} height={48} alt="" />
       </div>
     </div>
   );
@@ -100,10 +113,10 @@ export async function pageCard({ eyebrow, title, subtitle }: { eyebrow: string; 
     (
       <div style={{ ...goldBackground, width: "100%", height: "100%", display: "flex", position: "relative", fontFamily: "Jakarta", color: C.ink }}>
         <div style={{ position: "absolute", right: -60, bottom: -90, display: "flex", opacity: 0.16 }}>
-          <Mark size={560} color={C.white} />
+          <Mark size={600} color={C.white} dot={C.white} />
         </div>
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "64px 72px", width: "100%" }}>
-          <Brand />
+          <Brand src={(await logos()).light} />
           <div style={{ display: "flex", flexDirection: "column", maxWidth: 900 }}>
             <div style={{ fontSize: 24, fontWeight: 800, letterSpacing: 5, color: "rgba(26,23,20,0.7)", marginBottom: 18 }}>{eyebrow.toUpperCase()}</div>
             <div style={{ fontSize: titleSize(title), fontWeight: 800, lineHeight: 1.05, letterSpacing: -2 }}>{title}</div>
@@ -130,7 +143,7 @@ export async function eventCard(event: Event | null) {
     (
       <div style={{ ...goldBackground, width: "100%", height: "100%", display: "flex", fontFamily: "Jakarta", color: C.ink }}>
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "56px 64px", flex: 1, position: "relative" }}>
-          <Brand />
+          <Brand src={(await logos()).light} />
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ display: "flex", marginBottom: 18 }}>
               <div style={{ display: "flex", padding: "8px 18px", borderRadius: 999, background: event.is_public ? "rgba(255,255,255,0.75)" : C.ink, color: event.is_public ? C.ink : C.white, fontSize: 20, fontWeight: 800, letterSpacing: 3 }}>
@@ -174,7 +187,7 @@ export async function albumCard(album: GalleryAlbum | null, photos: number) {
           ) : null}
           <div style={{ position: "absolute", top: 0, left: 0, width: 1168, height: 598, display: "flex", backgroundImage: "linear-gradient(180deg, rgba(26,23,20,0.55) 0%, rgba(26,23,20,0) 30%, rgba(26,23,20,0) 45%, rgba(26,23,20,0.88) 100%)" }} />
           <div style={{ position: "absolute", top: 0, left: 0, width: 1168, height: 598, display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "40px 48px" }}>
-            <Brand dark />
+            <Brand src={(await logos()).dark} onDark />
             <div style={{ display: "flex", flexDirection: "column" }}>
               <div style={{ fontSize: 22, fontWeight: 800, letterSpacing: 5, color: C.goldLight, marginBottom: 10 }}>
                 {`GALERÍA · ${photos} FOTOS`}

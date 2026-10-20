@@ -10,7 +10,7 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: "/",
     display: "standalone",
     background_color: "#fffdf8",
-    theme_color: "#e9a23b",
+    theme_color: "#f7a500",
     icons: [
       { src: "/brand/icon-192.png", sizes: "192x192", type: "image/png" },
       { src: "/brand/ybl-logo-512.png", sizes: "512x512", type: "image/png" },
