@@ -9,6 +9,7 @@ import { Field, FormMessage, NativeSelect } from "@/components/forms/field";
 import { SubmitButton } from "@/components/forms/submit-button";
 import { DeleteButton } from "@/components/admin/delete-button";
 import { VentureCard } from "@/components/community/venture-card";
+import { ImagePicker } from "@/components/forms/image-picker";
 import { INDUSTRIES, MAX_VENTURES, VENTURE_ROLES, VENTURE_STAGES } from "@/lib/constants";
 import type { MemberVenture } from "@/lib/types";
 
@@ -55,6 +56,9 @@ function VentureForm({ venture, onDone, cancelable = true }: { venture?: MemberV
   const [state, action] = useActionState<VentureState, FormData>(saveVenture, undefined);
   const e = state?.errors ?? {};
   const key = venture?.id ?? "new";
+  const hasContact = Boolean(
+    venture && (venture.contact_phone || venture.contact_email || venture.instagram || venture.tiktok || venture.facebook || venture.linkedin),
+  );
 
   useEffect(() => {
     if (state?.ok) onDone();
@@ -97,14 +101,59 @@ function VentureForm({ venture, onDone, cancelable = true }: { venture?: MemberV
           <Input id={`v-website-${key}`} name="website" type="url" placeholder="https://" defaultValue={venture?.website ?? ""} />
         </Field>
       </div>
-      <Field label="Logo" htmlFor={`v-logo-${key}`} error={e.logo} hint="Cuadrado de preferencia. JPG, PNG o WebP, máximo 3 MB.">
-        <Input id={`v-logo-${key}`} name="logo" type="file" accept="image/png,image/jpeg,image/webp" />
-      </Field>
-      {venture?.logo_url ? (
-        <label className="flex items-center gap-2 text-sm text-muted-foreground">
-          <input type="checkbox" name="remove_logo" className="size-4 accent-[var(--ybl-gold)]" /> Quitar el logo actual
-        </label>
-      ) : null}
+      <div className="grid gap-1.5">
+        <span className="text-sm font-medium">Logo</span>
+        <ImagePicker
+          id={`v-logo-${key}`}
+          name="logo"
+          current={venture?.logo_url}
+          fallback={(venture?.name ?? "?").trim().charAt(0).toUpperCase()}
+          error={e.logo}
+          hint="Cuadrado de preferencia. JPG, PNG o WebP, máximo 3 MB."
+        />
+        {venture?.logo_url ? (
+          <label className="flex items-center gap-2 text-sm text-muted-foreground">
+            <input type="checkbox" name="remove_logo" className="size-4 accent-[var(--ybl-gold)]" /> Quitar el logo actual
+          </label>
+        ) : null}
+      </div>
+
+      <details className="group rounded-xl border bg-muted/40 p-4" open={hasContact || Object.keys(e).some((k) => CONTACT_KEYS.includes(k))}>
+        <summary className="cursor-pointer list-none text-sm font-semibold marker:hidden">
+          <span className="inline-flex items-center gap-2">
+            Contacto y redes sociales
+            <span className="text-xs font-normal text-muted-foreground">opcional · solo lo ven miembros aprobados</span>
+          </span>
+        </summary>
+        <div className="mt-4 grid gap-4">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Field label="Teléfono" htmlFor={`v-phone-${key}`} error={e.contact_phone}>
+              <Input id={`v-phone-${key}`} name="contact_phone" type="tel" inputMode="tel" defaultValue={venture?.contact_phone ?? ""} placeholder="33 1234 5678" />
+            </Field>
+            <Field label="Correo" htmlFor={`v-email-${key}`} error={e.contact_email}>
+              <Input id={`v-email-${key}`} name="contact_email" type="email" defaultValue={venture?.contact_email ?? ""} placeholder="hola@tuempresa.mx" />
+            </Field>
+          </div>
+          <label className="flex items-center gap-2 text-sm">
+            <input type="checkbox" name="contact_whatsapp" defaultChecked={venture?.contact_whatsapp ?? false} className="size-4 accent-[var(--ybl-gold)]" />
+            Este número tiene WhatsApp
+          </label>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Field label="Instagram" htmlFor={`v-ig-${key}`} error={e.instagram}>
+              <AtInput id={`v-ig-${key}`} name="instagram" defaultValue={venture?.instagram} />
+            </Field>
+            <Field label="TikTok" htmlFor={`v-tt-${key}`} error={e.tiktok}>
+              <AtInput id={`v-tt-${key}`} name="tiktok" defaultValue={venture?.tiktok} />
+            </Field>
+            <Field label="Facebook" htmlFor={`v-fb-${key}`} error={e.facebook}>
+              <Input id={`v-fb-${key}`} name="facebook" defaultValue={venture?.facebook ?? ""} placeholder="facebook.com/tuempresa" />
+            </Field>
+            <Field label="LinkedIn" htmlFor={`v-li-${key}`} error={e.linkedin}>
+              <Input id={`v-li-${key}`} name="linkedin" defaultValue={venture?.linkedin ?? ""} placeholder="linkedin.com/company/tuempresa" />
+            </Field>
+          </div>
+        </div>
+      </details>
       <FormMessage message={state?.message} />
       <div className="flex gap-2">
         <SubmitButton className="font-semibold">{venture ? "Guardar cambios" : "Agregar"}</SubmitButton>
@@ -115,5 +164,29 @@ function VentureForm({ venture, onDone, cancelable = true }: { venture?: MemberV
         ) : null}
       </div>
     </form>
+  );
+}
+
+const CONTACT_KEYS = ["contact_phone", "contact_email", "instagram", "tiktok", "facebook", "linkedin"];
+
+/** Campo de usuario de red social con @ fija; si la escriben o pegan, se quita. */
+function AtInput({ id, name, defaultValue }: { id: string; name: string; defaultValue?: string | null }) {
+  return (
+    <div className="relative">
+      <span aria-hidden="true" className="pointer-events-none absolute top-1/2 left-2.5 -translate-y-1/2 text-sm text-muted-foreground">@</span>
+      <Input
+        id={id}
+        name={name}
+        defaultValue={defaultValue ?? ""}
+        autoComplete="off"
+        autoCapitalize="none"
+        spellCheck={false}
+        className="pl-6"
+        onChange={(ev) => {
+          const clean = ev.currentTarget.value.replace(/^@+/, "").replace(/\s/g, "");
+          if (clean !== ev.currentTarget.value) ev.currentTarget.value = clean;
+        }}
+      />
+    </div>
   );
 }

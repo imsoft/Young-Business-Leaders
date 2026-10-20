@@ -48,7 +48,8 @@ export default function AvisoDePrivacidadPage() {
                 <li>
                   <strong>Perfil de miembro (opcional):</strong> foto, a qué te dedicas, descripción, industria, ciudad,
                   usuario de Instagram, LinkedIn y sitio personal, y tus emprendimientos (nombre, logo, qué hace, tu rol,
-                  etapa, industria y sitio web). Tú decides qué llenar.
+                  etapa, industria, sitio web y los datos de contacto que quieras publicar: teléfono, correo y redes
+                  sociales). Tú decides qué llenar; esos datos solo los ven miembros aprobados.
                 </li>
                 <li>
                   <strong>Registro a eventos:</strong> si eres miembro, el evento queda ligado a tu cuenta. Si te registras sin

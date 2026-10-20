@@ -39,6 +39,44 @@ const emptyToNull = z
   .optional()
   .transform((v) => (v ? v : null));
 
+/** Acepta "@usuario", "usuario" o el enlace completo del perfil y deja solo el usuario. */
+export function socialHandle(value: unknown, host: string) {
+  if (typeof value !== "string") return null;
+  let v = value.trim();
+  if (!v) return null;
+  const re = new RegExp(`^(?:https?://)?(?:www\\.)?${host.replace(".", "\\.")}/@?`, "i");
+  v = v.replace(re, "").replace(/^@+/, "").split(/[/?#]/)[0];
+  return v || null;
+}
+
+/** Acepta "facebook.com/x" o el enlace completo; siempre devuelve https://. */
+export function socialUrl(value: unknown) {
+  if (typeof value !== "string") return null;
+  const v = value.trim();
+  if (!v) return null;
+  return /^https?:\/\//i.test(v) ? v.replace(/^http:/i, "https:") : `https://${v}`;
+}
+
+const handleField = (host: string, max: number) =>
+  z
+    .string()
+    .optional()
+    .transform((v) => socialHandle(v, host))
+    .pipe(z.string().regex(new RegExp(`^[A-Za-z0-9._]{1,${max}}$`), "Usuario inválido").nullable());
+
+const domainUrlField = (domain: RegExp, label: string) =>
+  z
+    .string()
+    .optional()
+    .transform(socialUrl)
+    .pipe(
+      z
+        .string()
+        .max(300)
+        .refine((u) => { try { return domain.test(new URL(u).hostname); } catch { return false; } }, `Debe ser un enlace de ${label}`)
+        .nullable(),
+    );
+
 export const ventureSchema = z.object({
   name: z.string().trim().min(1, "Escribe el nombre").max(80),
   tagline: optionalText(140),
@@ -46,7 +84,31 @@ export const ventureSchema = z.object({
   stage: emptyToNull.pipe(z.enum(["idea", "validando", "operando", "creciendo"]).nullable()),
   industry: optionalText(60),
   website: optionalUrl,
+  contact_phone: z
+    .string()
+    .optional()
+    .transform((v) => (v?.trim() ? v.trim() : null))
+    .pipe(z.string().regex(/^\+?[0-9 ()-]{7,20}$/, "Escribe solo números, con lada si quieres (ej. 33 1234 5678)").nullable()),
+  contact_whatsapp: z
+    .string()
+    .optional()
+    .transform((v) => v === "on" || v === "true"),
+  contact_email: z
+    .string()
+    .optional()
+    .transform((v) => (v?.trim() ? v.trim().toLowerCase() : null))
+    .pipe(z.email("Correo inválido").max(254).nullable()),
+  instagram: handleField("instagram.com", 30),
+  tiktok: handleField("tiktok.com", 24),
+  facebook: domainUrlField(/(^|\.)(facebook|fb)\.com$/i, "Facebook"),
+  linkedin: domainUrlField(/(^|\.)linkedin\.com$/i, "LinkedIn"),
 });
+
+/** Enlace de WhatsApp a partir del teléfono; a números de 10 dígitos les agrega la lada de México. */
+export function whatsappLink(phone: string) {
+  const digits = phone.replace(/\D/g, "");
+  return `https://wa.me/${digits.length === 10 ? `52${digits}` : digits}`;
+}
 
 export const registerSchema = z
   .object({

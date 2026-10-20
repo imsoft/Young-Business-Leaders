@@ -4,9 +4,9 @@ import { useActionState } from "react";
 import { updateProfile, type ProfileState } from "@/actions/profile";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Field, FormMessage, NativeSelect } from "@/components/forms/field";
 import { SubmitButton } from "@/components/forms/submit-button";
+import { ImagePicker } from "@/components/forms/image-picker";
 import { INDUSTRIES } from "@/lib/constants";
 import { initials } from "@/lib/format";
 import type { Profile } from "@/lib/types";
@@ -16,14 +16,17 @@ export function ProfileForm({ profile }: { profile: Profile }) {
   const e = state?.errors ?? {};
   return (
     <form action={action} className="grid gap-5">
-      <div className="flex items-center gap-4">
-        <Avatar className="size-20">
-          <AvatarImage src={profile.avatar_url ?? undefined} alt="" />
-          <AvatarFallback className="text-xl">{initials(profile.full_name || profile.email)}</AvatarFallback>
-        </Avatar>
-        <Field label="Foto de perfil" htmlFor="avatar" error={e.avatar} hint="JPG o PNG, máximo 3 MB" className="flex-1">
-          <Input id="avatar" name="avatar" type="file" accept="image/*" />
-        </Field>
+      <div className="grid gap-1.5">
+        <span className="text-sm font-medium">Foto de perfil</span>
+        <ImagePicker
+          id="avatar"
+          name="avatar"
+          shape="circle"
+          current={profile.avatar_url}
+          fallback={initials(profile.full_name || profile.email)}
+          error={e.avatar}
+          hint="JPG, PNG o WebP, máximo 3 MB. Se recorta en cuadrado."
+        />
       </div>
       <Field label="Nombre completo" htmlFor="full_name" error={e.full_name}>
         <Input id="full_name" name="full_name" defaultValue={profile.full_name} required />

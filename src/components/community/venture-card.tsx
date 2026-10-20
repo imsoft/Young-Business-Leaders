@@ -1,4 +1,6 @@
-import { Globe } from "lucide-react";
+import { Globe, Mail, MessageCircle, Phone } from "lucide-react";
+import { FacebookIcon, InstagramIcon, LinkedinIcon, TikTokIcon } from "@/components/site/brand-icons";
+import { whatsappLink } from "@/lib/validation";
 import { Badge } from "@/components/ui/badge";
 import { VENTURE_ROLES, VENTURE_STAGES } from "@/lib/constants";
 import type { MemberVenture } from "@/lib/types";
@@ -43,8 +45,38 @@ export function VentureCard({ venture, primary = false, children }: { venture: M
             </a>
           ) : null}
         </div>
+        <VentureContact venture={venture} />
         {children}
       </div>
     </div>
+  );
+}
+
+function VentureContact({ venture: v }: { venture: MemberVenture }) {
+  const links = [
+    v.contact_phone ? { href: `tel:${v.contact_phone.replace(/[^\d+]/g, "")}`, label: v.contact_phone, icon: Phone, external: false } : null,
+    v.contact_phone && v.contact_whatsapp ? { href: whatsappLink(v.contact_phone), label: "WhatsApp", icon: MessageCircle, external: true } : null,
+    v.contact_email ? { href: `mailto:${v.contact_email}`, label: v.contact_email, icon: Mail, external: false } : null,
+    v.instagram ? { href: `https://instagram.com/${v.instagram}`, label: `@${v.instagram}`, icon: InstagramIcon, external: true } : null,
+    v.tiktok ? { href: `https://www.tiktok.com/@${v.tiktok}`, label: `@${v.tiktok}`, icon: TikTokIcon, external: true } : null,
+    v.facebook ? { href: v.facebook, label: "Facebook", icon: FacebookIcon, external: true } : null,
+    v.linkedin ? { href: v.linkedin, label: "LinkedIn", icon: LinkedinIcon, external: true } : null,
+  ].filter((l): l is NonNullable<typeof l> => Boolean(l));
+  if (links.length === 0) return null;
+  return (
+    <ul className="mt-3 flex flex-wrap gap-1.5">
+      {links.map((l) => (
+        <li key={l.href}>
+          <a
+            href={l.href}
+            {...(l.external ? { target: "_blank", rel: "noreferrer" } : {})}
+            className="inline-flex max-w-full items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-medium transition hover:border-gold hover:text-gold-deep"
+          >
+            <l.icon className="size-3.5 shrink-0 text-gold-deep" />
+            <span className="truncate">{l.label}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
   );
 }

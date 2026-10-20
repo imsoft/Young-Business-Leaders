@@ -10,7 +10,10 @@ import { MAX_VENTURES } from "@/lib/constants";
 export type VentureState = { errors?: FieldErrors; message?: string; ok?: boolean } | undefined;
 
 const MAX_LOGO_BYTES = 3 * 1024 * 1024;
-const MISSING_TABLE = new Set(["42P01", "PGRST205"]);
+const CONTACT_COLUMNS = ["contact_phone", "contact_whatsapp", "contact_email", "instagram", "facebook", "linkedin", "tiktok"] as const;
+type ContactKey = (typeof CONTACT_COLUMNS)[number];
+// Tabla o columnas aún no creadas (migración pendiente)
+const MISSING_TABLE = new Set(["42P01", "PGRST205", "PGRST204"]);
 
 function refresh(profileId: string) {
   revalidatePath("/comunidad/perfil");
@@ -47,17 +50,22 @@ export async function saveVenture(_: VentureState, formData: FormData): Promise<
     ...(formData.get("remove_logo") === "on" ? { logo_url: null } : {}),
   };
 
-  if (isEdit) {
-    const { error } = await supabase.from("member_ventures").update(payload).eq("id", id).eq("profile_id", profile.id);
-    if (error) return { message: MISSING_TABLE.has(error.code) ? "Esta función aún no está activa." : "No se pudo guardar." };
-  } else {
-    const { count } = await supabase.from("member_ventures").select("id", { count: "exact", head: true }).eq("profile_id", profile.id);
+  // Si la migración de contacto (20261021) aún no corre, se guarda sin esas columnas.
+  const write = async (data: typeof payload | Omit<typeof payload, ContactKey>) => {
+    if (isEdit) return supabase.from("member_ventures").update(data).eq("id", id).eq("profile_id", profile.id);
+    return supabase.from("member_ventures").insert({ ...data, profile_id: profile.id, sort_order: count ?? 0 });
+  };
+  let count: number | null = null;
+  if (!isEdit) {
+    ({ count } = await supabase.from("member_ventures").select("id", { count: "exact", head: true }).eq("profile_id", profile.id));
     if ((count ?? 0) >= MAX_VENTURES) return { message: `Puedes registrar hasta ${MAX_VENTURES} emprendimientos.` };
-    const { error } = await supabase
-      .from("member_ventures")
-      .insert({ ...payload, profile_id: profile.id, sort_order: count ?? 0 });
-    if (error) return { message: MISSING_TABLE.has(error.code) ? "Esta función aún no está activa." : "No se pudo guardar." };
   }
+  let { error } = await write(payload);
+  if (error?.code === "PGRST204") {
+    const withoutContact = Object.fromEntries(Object.entries(payload).filter(([k]) => !CONTACT_COLUMNS.includes(k as ContactKey)));
+    ({ error } = await write(withoutContact as Omit<typeof payload, ContactKey>));
+  }
+  if (error) return { message: MISSING_TABLE.has(error.code) ? "Esta función aún no está activa." : "No se pudo guardar." };
   refresh(profile.id);
   return { ok: true };
 }

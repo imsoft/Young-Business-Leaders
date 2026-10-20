@@ -92,6 +92,13 @@ export type MemberVenture = {
   industry: string | null;
   website: string | null;
   logo_url: string | null;
+  contact_phone: string | null;
+  contact_whatsapp: boolean;
+  contact_email: string | null;
+  instagram: string | null;
+  facebook: string | null;
+  linkedin: string | null;
+  tiktok: string | null;
   sort_order: number;
   created_at: string;
   updated_at: string;

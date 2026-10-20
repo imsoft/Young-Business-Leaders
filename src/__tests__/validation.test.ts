@@ -75,7 +75,10 @@ import { ventureSchema } from "@/lib/validation";
 describe("ventureSchema", () => {
   it("acepta un emprendimiento mínimo y convierte vacíos a null", () => {
     const v = ventureSchema.parse({ name: "Café Origen", tagline: "", role: "", stage: "", industry: "", website: "" });
-    expect(v).toEqual({ name: "Café Origen", tagline: null, role: null, stage: null, industry: null, website: null });
+    expect(v).toEqual({
+      name: "Café Origen", tagline: null, role: null, stage: null, industry: null, website: null,
+      contact_phone: null, contact_whatsapp: false, contact_email: null, instagram: null, tiktok: null, facebook: null, linkedin: null,
+    });
   });
   it("valida rol, etapa y URL", () => {
     expect(ventureSchema.safeParse({ name: "X", role: "ceo" }).success).toBe(false);
@@ -104,5 +107,35 @@ describe("badge de desarrollador", () => {
   it("solo aplica al perfil del desarrollador", () => {
     expect(isPlatformDeveloper("d5567511-2179-474e-8937-666402ae131b")).toBe(true);
     expect(isPlatformDeveloper("00000000-0000-0000-0000-000000000000")).toBe(false);
+  });
+});
+
+import { socialHandle, socialUrl, whatsappLink } from "@/lib/validation";
+
+describe("contacto del emprendimiento", () => {
+  it("limpia usuarios de redes pegados como @, usuario o enlace", () => {
+    expect(socialHandle("@cafe.origen", "instagram.com")).toBe("cafe.origen");
+    expect(socialHandle("https://www.instagram.com/cafe.origen/?hl=es", "instagram.com")).toBe("cafe.origen");
+    expect(socialHandle("tiktok.com/@cafeorigen", "tiktok.com")).toBe("cafeorigen");
+    expect(socialHandle("  ", "instagram.com")).toBeNull();
+  });
+  it("normaliza enlaces a https", () => {
+    expect(socialUrl("facebook.com/cafeorigen")).toBe("https://facebook.com/cafeorigen");
+    expect(socialUrl("http://linkedin.com/company/x")).toBe("https://linkedin.com/company/x");
+  });
+  it("valida el esquema completo", () => {
+    const ok = ventureSchema.parse({
+      name: "Café Origen", contact_phone: "33 1234 5678", contact_whatsapp: "on", contact_email: "Hola@CafeOrigen.MX",
+      instagram: "@cafe.origen", tiktok: "", facebook: "facebook.com/cafeorigen", linkedin: "",
+    });
+    expect(ok).toMatchObject({ contact_phone: "33 1234 5678", contact_whatsapp: true, contact_email: "hola@cafeorigen.mx", instagram: "cafe.origen", tiktok: null, facebook: "https://facebook.com/cafeorigen", linkedin: null });
+    expect(ventureSchema.safeParse({ name: "X", facebook: "https://evil.com/x" }).success).toBe(false);
+    expect(ventureSchema.safeParse({ name: "X", linkedin: "https://linkedin.com.evil.io/x" }).success).toBe(false);
+    expect(ventureSchema.safeParse({ name: "X", contact_phone: "llámame" }).success).toBe(false);
+    expect(ventureSchema.safeParse({ name: "X", contact_whatsapp: undefined }).success).toBe(true);
+  });
+  it("arma el enlace de WhatsApp con lada de México", () => {
+    expect(whatsappLink("33 1234 5678")).toBe("https://wa.me/523312345678");
+    expect(whatsappLink("+52 1 33 1234 5678")).toBe("https://wa.me/5213312345678");
   });
 });
