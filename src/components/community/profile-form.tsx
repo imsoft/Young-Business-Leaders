@@ -28,8 +28,14 @@ export function ProfileForm({ profile }: { profile: Profile }) {
       <Field label="Nombre completo" htmlFor="full_name" error={e.full_name}>
         <Input id="full_name" name="full_name" defaultValue={profile.full_name} required />
       </Field>
-      <Field label="Titular" htmlFor="headline" error={e.headline} hint="Una línea sobre lo que haces o estás construyendo.">
-        <Input id="headline" name="headline" defaultValue={profile.headline ?? ""} maxLength={100} />
+      <Field label="¿A qué te dedicas?" htmlFor="headline" error={e.headline} hint="Aparece debajo de tu nombre en el directorio.">
+        <Input
+          id="headline"
+          name="headline"
+          defaultValue={profile.headline ?? ""}
+          maxLength={100}
+          placeholder="Ej. Cofundadora de Café Origen · Café de especialidad"
+        />
       </Field>
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Empresa o proyecto" htmlFor="company" error={e.company}>
