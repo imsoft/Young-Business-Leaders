@@ -55,13 +55,31 @@ async function Body({ params }: { params: PageProps<"/comunidad/[id]">["params"]
               <DeveloperBadge profileId={m.id} />
             </div>
             {m.headline ? <p className="mt-1 text-lg text-muted-foreground">{m.headline}</p> : null}
-            <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
-              {m.city ? <span className="inline-flex items-center gap-1"><MapPin className="size-4" />{m.city}</span> : null}
-            </div>
-            {m.industry ? <Badge variant="secondary" className="mt-3">{m.industry}</Badge> : null}
+            {m.city || m.industry ? (
+              <div className="mt-3 flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                {m.city ? <span className="inline-flex items-center gap-1"><MapPin className="size-4" />{m.city}</span> : null}
+                {m.industry ? <Badge variant="secondary">{m.industry}</Badge> : null}
+              </div>
+            ) : null}
+            {links.length > 0 ? (
+              <ul className="mt-4 flex flex-wrap gap-2" aria-label="Redes y enlaces personales">
+                {links.map((l) => (
+                  <li key={l.href}>
+                    <a href={l.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm transition hover:border-gold hover:text-gold-deep">
+                      <l.icon className="size-4 text-gold-deep" /> {l.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
           </div>
         </div>
-        {m.bio ? <p className="mt-8 whitespace-pre-line text-foreground/90">{m.bio}</p> : null}
+        {m.bio ? (
+          <section aria-labelledby="sobre-mi" className="mt-10">
+            <h2 id="sobre-mi" className="font-heading mb-3 text-lg font-extrabold">Sobre mí</h2>
+            <p className="whitespace-pre-line text-foreground/90">{m.bio}</p>
+          </section>
+        ) : null}
         {ventures.length > 0 ? (
           <section aria-labelledby="emprendimientos" className="mt-10">
             <h2 id="emprendimientos" className="font-heading mb-4 text-lg font-extrabold">
@@ -73,17 +91,6 @@ async function Body({ params }: { params: PageProps<"/comunidad/[id]">["params"]
               ))}
             </div>
           </section>
-        ) : null}
-        {links.length > 0 ? (
-          <ul className="mt-8 flex flex-wrap gap-2">
-            {links.map((l) => (
-              <li key={l.href}>
-                <a href={l.href} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm hover:border-gold">
-                  <l.icon className="size-4 text-gold-deep" /> {l.label}
-                </a>
-              </li>
-            ))}
-          </ul>
         ) : null}
       </div>
     </div>
