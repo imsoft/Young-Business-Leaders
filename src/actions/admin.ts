@@ -16,6 +16,9 @@ import {
 } from "@/lib/validation";
 import type { MemberStatus } from "@/lib/types";
 import { processUpload, uploadName, UNSUPPORTED_IMAGE } from "@/lib/images";
+import { after } from "next/server";
+import { sendEmail } from "@/lib/email/send";
+import { memberApprovedEmail } from "@/lib/email/messages";
 
 export type AdminState = { errors?: FieldErrors; message?: string; ok?: boolean } | undefined;
 
@@ -39,7 +42,14 @@ async function uploadImage(folder: string, file: FormDataEntryValue | null) {
 // ---------- Miembros ----------
 export async function setMemberStatus(userId: string, status: MemberStatus) {
   await requireAdmin();
-  await createAdminClient().from("profiles").update({ status }).eq("id", userId);
+  const admin = createAdminClient();
+  const { data: before } = await admin.from("profiles").select("status, email, full_name").eq("id", userId).maybeSingle();
+  const { error } = await admin.from("profiles").update({ status }).eq("id", userId);
+  // Aviso de bienvenida solo cuando pasa a aprobado (no al re-aprobar).
+  if (!error && status === "approved" && before && before.status !== "approved" && before.email) {
+    const mail = memberApprovedEmail(before.full_name || null, before.email);
+    after(() => sendEmail(mail));
+  }
   revalidatePath("/admin/miembros");
   revalidatePath("/comunidad", "layout");
 }

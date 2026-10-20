@@ -18,6 +18,11 @@ export function LoginForm({ next }: { next?: string }) {
       <Field label="Contraseña" htmlFor="password" error={state?.errors?.password}>
         <Input id="password" name="password" type="password" autoComplete="current-password" required />
       </Field>
+      <div className="-mt-2 flex justify-end">
+        <Link href="/recuperar" className="text-xs text-muted-foreground underline-offset-4 hover:text-foreground hover:underline">
+          ¿Olvidaste tu contraseña?
+        </Link>
+      </div>
       <FormMessage message={state?.message} />
       <SubmitButton pendingText="Entrando…" className="w-full font-semibold">
         Iniciar sesión

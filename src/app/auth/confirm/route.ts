@@ -13,7 +13,8 @@ export async function GET(request: NextRequest) {
   const { searchParams, origin } = request.nextUrl;
   const tokenHash = searchParams.get("token_hash");
   const type = searchParams.get("type") as EmailOtpType | null;
-  const next = safeNextPath(searchParams.get("next"));
+  // La recuperación siempre lleva a elegir contraseña, sin importar qué `next` traiga el correo.
+  const next = type === "recovery" ? "/actualizar-contrasena" : safeNextPath(searchParams.get("next"));
 
   if (tokenHash && type && TYPES.includes(type)) {
     const supabase = await createClient();

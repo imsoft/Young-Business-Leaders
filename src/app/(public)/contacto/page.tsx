@@ -28,11 +28,13 @@ export default function ContactoPage() {
             description="¿Quieres dar una charla, patrocinar un evento o tienes dudas sobre la comunidad? Escríbenos."
           />
           <Stagger as="ul" className="space-y-3">
-            <StaggerItem as="li">
-              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="flex items-center gap-3 rounded-2xl border bg-card p-4 transition hover:border-gold">
-                <MessageCircle className="size-5 text-gold-deep" /> <span className="font-medium">WhatsApp</span>
-              </a>
-            </StaggerItem>
+            {WHATSAPP_URL ? (
+              <StaggerItem as="li">
+                <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" className="flex items-center gap-3 rounded-2xl border bg-card p-4 transition hover:border-gold">
+                  <MessageCircle className="size-5 text-gold-deep" /> <span className="font-medium">WhatsApp</span>
+                </a>
+              </StaggerItem>
+            ) : null}
             <StaggerItem as="li">
               <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="flex items-center gap-3 rounded-2xl border bg-card p-4 transition hover:border-gold">
                 <InstagramIcon className="size-5 text-gold-deep" /> <span className="font-medium">@ybl.mx</span>

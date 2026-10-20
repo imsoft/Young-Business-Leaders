@@ -3,7 +3,8 @@ export const SITE_SHORT = "YBL";
 export const SITE_TAGLINE = "Emprendiendo hacia el éxito empresarial";
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://yblmx.org";
 export const INSTAGRAM_URL = "https://instagram.com/ybl.mx";
-export const WHATSAPP_URL = "https://wa.me/523300000000"; // TODO: número real de YBL
+/** WhatsApp de YBL en formato https://wa.me/52XXXXXXXXXX. Vacío = el botón no se muestra. */
+export const WHATSAPP_URL: string | null = null;
 export const CONTACT_EMAIL = "hola@yblmx.org"; // Reenvío configurado en Cloudflare Email Routing
 
 export const INDUSTRIES = [

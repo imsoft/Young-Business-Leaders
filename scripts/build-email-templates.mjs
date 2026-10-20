@@ -3,67 +3,13 @@
 // Variables de Supabase (Go templates): {{ .SiteURL }}, {{ .TokenHash }}, {{ .Token }}, {{ .Email }}, {{ .NewEmail }}, {{ .Data.full_name }}
 import { mkdirSync, writeFileSync } from "node:fs";
 
-const C = { gold: "#F7A500", goldDeep: "#D98C00", ink: "#1A1714", text: "#4A443C", muted: "#8A8276", cream: "#FBF5EA", line: "#EFE6D6" };
-const FONT = "'Plus Jakarta Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif";
+import { button, code, layout as baseLayout, p } from "../src/lib/email/layout.mjs";
+
 const SITE = "{{ .SiteURL }}";
-const LOGO = "https://yblmx.org/brand/ybl-logo-horizontal.png";
 const HELLO = `Hola{{ if .Data.full_name }} {{ .Data.full_name }}{{ end }},`;
+const layout = (opts) => baseLayout({ ...opts, siteUrl: SITE });
 
 const confirmUrl = (type, next) => `${SITE}/auth/confirm?token_hash={{ .TokenHash }}&type=${type}&next=${next}`;
-
-function button(href, label) {
-  return `
-<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:28px 0 8px">
-  <tr><td style="border-radius:12px;background:${C.gold}">
-    <a href="${href}" target="_blank" style="display:inline-block;padding:14px 28px;font-family:${FONT};font-size:16px;font-weight:700;color:${C.ink};text-decoration:none;border-radius:12px">${label}</a>
-  </td></tr>
-</table>
-<p style="margin:16px 0 0;font-family:${FONT};font-size:12px;line-height:18px;color:${C.muted}">Si el botón no funciona, copia este enlace en tu navegador:<br><a href="${href}" style="color:${C.goldDeep};word-break:break-all">${href}</a></p>`;
-}
-
-function code(token) {
-  return `
-<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:24px 0 8px">
-  <tr><td style="padding:16px 28px;border-radius:12px;background:${C.cream};border:1px solid ${C.line};font-family:'SFMono-Regular',Menlo,Consolas,monospace;font-size:28px;font-weight:700;letter-spacing:8px;color:${C.ink}">${token}</td></tr>
-</table>`;
-}
-
-const p = (html) => `<p style="margin:0 0 14px;font-family:${FONT};font-size:16px;line-height:26px;color:${C.text}">${html}</p>`;
-
-function layout({ preheader, title, body, footnote }) {
-  return `<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light only">
-<meta name="supported-color-schemes" content="light">
-<title>${title}</title>
-</head>
-<body style="margin:0;padding:0;background:${C.cream};-webkit-text-size-adjust:100%">
-<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent">${preheader}&#847;&zwnj;&nbsp;&#847;&zwnj;&nbsp;</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${C.cream}">
-  <tr><td align="center" style="padding:32px 16px">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:560px">
-      <tr><td style="background:#ffffff;border-radius:20px 20px 0 0;padding:28px 32px 24px;border-bottom:6px solid ${C.gold}">
-        <img src="${LOGO}" width="238" height="32" alt="Young Business Leaders by CCJEJ" style="display:block;border:0;height:32px;width:238px">
-      </td></tr>
-      <tr><td style="background:#ffffff;padding:32px 32px 32px;border-radius:0 0 20px 20px">
-        <h1 style="margin:0 0 18px;font-family:${FONT};font-size:26px;line-height:32px;font-weight:800;color:${C.ink}">${title}</h1>
-        ${body}
-        ${footnote ? `<p style="margin:28px 0 0;padding-top:20px;border-top:1px solid ${C.line};font-family:${FONT};font-size:13px;line-height:20px;color:${C.muted}">${footnote}</p>` : ""}
-      </td></tr>
-      <tr><td align="center" style="padding:24px 16px 0;font-family:${FONT};font-size:12px;line-height:18px;color:${C.muted}">
-        <a href="${SITE}" style="color:${C.ink};font-weight:700;text-decoration:none">yblmx.org</a> · Guadalajara, Jalisco<br>
-        <a href="${SITE}/aviso-de-privacidad" style="color:${C.muted}">Aviso de privacidad</a> · ¿Dudas? <a href="mailto:hola@yblmx.org" style="color:${C.muted}">hola@yblmx.org</a>
-      </td></tr>
-    </table>
-  </td></tr>
-</table>
-</body>
-</html>
-`;
-}
 
 const NOT_YOU = "Si no fuiste tú, puedes ignorar este correo; nadie podrá usar tu cuenta sin este enlace.";
 
@@ -119,7 +65,7 @@ const templates = {
     html: layout({
       preheader: "Tu enlace para volver a entrar a YBL.",
       title: "Recupera el acceso",
-      body: p(HELLO) + p("Recibimos una solicitud para recuperar el acceso a tu cuenta de Young Business Leaders. Usa este botón para entrar.") + button(confirmUrl("recovery", "/comunidad/perfil"), "Entrar a mi cuenta"),
+      body: p(HELLO) + p("Recibimos una solicitud para recuperar el acceso a tu cuenta de Young Business Leaders. Usa este botón para elegir una contraseña nueva.") + button(confirmUrl("recovery", "/actualizar-contrasena"), "Elegir contraseña nueva"),
       footnote: `El enlace vence pronto y solo funciona una vez. ${NOT_YOU}`,
     }),
   },

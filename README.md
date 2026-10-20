@@ -82,6 +82,8 @@ SUPABASE_ACCESS_TOKEN=sbp_xxx node scripts/push-email-templates.mjs
 
 Los enlaces apuntan a `/auth/confirm?token_hash=…`, que funciona aunque el correo se abra en otro dispositivo. El envío sale por SMTP de Resend como `no-reply@yblmx.org`.
 
+La app manda además sus propios correos con el mismo diseño (`src/lib/email/`): confirmación de registro a un evento (con botón para agregarlo a Google Calendar) y bienvenida cuando un admin aprueba a un miembro. Necesitan `RESEND_API_KEY` en Vercel; sin ella la app funciona igual pero no los envía.
+
 ## Scripts
 
 ```sh

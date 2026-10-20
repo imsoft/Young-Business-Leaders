@@ -46,6 +46,12 @@ export const registerSchema = z
     path: ["confirm"],
   });
 
+export const resetRequestSchema = z.object({ email: z.email("Correo inválido") });
+
+export const newPasswordSchema = z
+  .object({ password: z.string().min(8, "Mínimo 8 caracteres").max(72, "Máximo 72 caracteres"), confirm: z.string() })
+  .refine((d) => d.password === d.confirm, { message: "Las contraseñas no coinciden", path: ["confirm"] });
+
 export const loginSchema = z.object({
   email: z.email("Correo inválido"),
   password: z.string().min(1, "Escribe tu contraseña"),

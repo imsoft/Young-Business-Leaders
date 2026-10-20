@@ -22,9 +22,11 @@ export function SiteFooter() {
             <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram" className="grid size-10 place-items-center rounded-full bg-white/10 transition hover:bg-gold hover:text-ink">
               <InstagramIcon className="size-5" />
             </a>
-            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="grid size-10 place-items-center rounded-full bg-white/10 transition hover:bg-gold hover:text-ink">
-              <MessageCircle className="size-5" />
-            </a>
+            {WHATSAPP_URL ? (
+              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="grid size-10 place-items-center rounded-full bg-white/10 transition hover:bg-gold hover:text-ink">
+                <MessageCircle className="size-5" />
+              </a>
+            ) : null}
           </div>
         </div>
         <div>

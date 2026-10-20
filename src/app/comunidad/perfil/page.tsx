@@ -23,6 +23,12 @@ async function Body({ searchParams }: { searchParams: PageProps<"/comunidad/perf
   const [profile, sp] = await Promise.all([requireProfile("/comunidad/perfil"), searchParams]);
   return (
     <div className="grid gap-6">
+      {sp.password ? (
+        <Alert>
+          <AlertTitle>Contraseña actualizada</AlertTitle>
+          <AlertDescription>Desde ahora entra con tu correo y la contraseña nueva.</AlertDescription>
+        </Alert>
+      ) : null}
       {sp.welcome ? (
         <Alert>
           <AlertTitle>¡Bienvenido a YBL!</AlertTitle>

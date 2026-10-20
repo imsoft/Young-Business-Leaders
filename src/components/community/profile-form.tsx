@@ -28,7 +28,7 @@ export function ProfileForm({ profile }: { profile: Profile }) {
       <Field label="Nombre completo" htmlFor="full_name" error={e.full_name}>
         <Input id="full_name" name="full_name" defaultValue={profile.full_name} required />
       </Field>
-      <Field label="Titular" htmlFor="headline" error={e.headline} hint="Ej. Fundador de Cursumi · Marketplace de cursos">
+      <Field label="Titular" htmlFor="headline" error={e.headline} hint="Una línea sobre lo que haces o estás construyendo.">
         <Input id="headline" name="headline" defaultValue={profile.headline ?? ""} maxLength={100} />
       </Field>
       <div className="grid gap-5 sm:grid-cols-2">
